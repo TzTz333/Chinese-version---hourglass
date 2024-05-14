@@ -1,3 +1,5 @@
+//这个文件是描写workspace的侧边栏菜单的
+
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -9,22 +11,22 @@ import useTheme from "hooks/use-theme";
 const workspaceLinks = (workspaceSlug: string) => [
   {
     icon: GridViewIcon,
-    name: "Dashboard",
+    name: "总览",
     href: `/${workspaceSlug}`,
   },
   {
     icon: AssignmentClipboardIcon,
-    name: "Projects",
+    name: "项目",
     href: `/${workspaceSlug}/projects`,
   },
   {
     icon: TickMarkIcon,
-    name: "My Issues",
+    name: "Issues",
     href: `/${workspaceSlug}/me/my-issues`,
   },
   {
     icon: SettingIcon,
-    name: "Settings",
+    name: "设置",
     href: `/${workspaceSlug}/settings`,
   },
 ];

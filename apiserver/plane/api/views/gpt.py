@@ -21,7 +21,7 @@ class GPTIntegrationEndpoint(BaseAPIView):
     permission_classes = [
         ProjectEntityPermission,
     ]
-
+ 
     def post(self, request, slug, project_id):
         try:
             if not settings.OPENAI_API_KEY or not settings.GPT_ENGINE:

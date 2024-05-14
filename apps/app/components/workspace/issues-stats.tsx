@@ -15,7 +15,7 @@ export const IssuesStats: React.FC<Props> = ({ data }) => (
     <div className="grid grid-cols-1 divide-y border-b lg:border-r lg:border-b-0">
       <div className="flex">
         <div className="basis-1/2 p-4">
-          <h4 className="text-sm">Issues assigned to you</h4>
+          <h4 className="text-sm">分配的问题</h4>
           <h5 className="mt-2 text-2xl font-semibold">
             {data ? (
               data.assigned_issues_count
@@ -27,7 +27,7 @@ export const IssuesStats: React.FC<Props> = ({ data }) => (
           </h5>
         </div>
         <div className="basis-1/2 border-l p-4">
-          <h4 className="text-sm">Pending issues</h4>
+          <h4 className="text-sm">待解决的问题</h4>
           <h5 className="mt-2 text-2xl font-semibold">
             {data ? (
               data.pending_issues_count
@@ -41,7 +41,7 @@ export const IssuesStats: React.FC<Props> = ({ data }) => (
       </div>
       <div className="flex">
         <div className="basis-1/2 p-4">
-          <h4 className="text-sm">Completed issues</h4>
+          <h4 className="text-sm">已完成的问题</h4>
           <h5 className="mt-2 text-2xl font-semibold">
             {data ? (
               data.completed_issues_count
@@ -53,7 +53,7 @@ export const IssuesStats: React.FC<Props> = ({ data }) => (
           </h5>
         </div>
         <div className="basis-1/2 border-l p-4">
-          <h4 className="text-sm">Issues due by this week</h4>
+          <h4 className="text-sm">截至到本周的问题</h4>
           <h5 className="mt-2 text-2xl font-semibold">
             {data ? (
               data.issues_due_week_count
@@ -67,7 +67,7 @@ export const IssuesStats: React.FC<Props> = ({ data }) => (
       </div>
     </div>
     <div className="p-4 lg:col-span-2">
-      <h3 className="mb-2 font-semibold capitalize">Activity Graph</h3>
+      <h3 className="mb-2 font-semibold capitalize">活动趋势图</h3>
       <ActivityGraph activities={data?.issue_activities} />
     </div>
   </div>

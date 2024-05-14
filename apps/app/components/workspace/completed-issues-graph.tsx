@@ -39,14 +39,14 @@ export const CompletedIssuesGraph: React.FC<Props> = ({ month, issues, setMonth 
   const CustomTooltip = ({ payload, label }: any) => (
     <div className="space-y-1 rounded bg-white p-3 text-sm shadow-md">
       <h4 className="text-gray-500">{label}</h4>
-      <h5>Completed issues: {payload[0]?.value}</h5>
+      <h5>已完成的issues: {payload[0]?.value}</h5>
     </div>
   );
 
   return (
     <div>
       <div className="mb-0.5 flex justify-between">
-        <h3 className="font-semibold">Issues closed by you</h3>
+        <h3 className="font-semibold">你已解决的Issues</h3>
         <CustomMenu label={<span className="text-sm">{MONTHS[month - 1]}</span>} noBorder>
           {MONTHS.map((month, index) => (
             <CustomMenu.MenuItem key={month} onClick={() => setMonth(index + 1)}>
@@ -73,7 +73,7 @@ export const CompletedIssuesGraph: React.FC<Props> = ({ month, issues, setMonth 
         </ResponsiveContainer>
         <h4 className="mt-4 flex items-center justify-center gap-2 text-[#d687ff]">
           <span className="h-2 w-2 bg-[#d687ff]" />
-          Completed Issues
+          已完成的Issues
         </h4>
       </div>
     </div>

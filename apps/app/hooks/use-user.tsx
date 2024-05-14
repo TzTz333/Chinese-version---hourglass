@@ -7,6 +7,12 @@ interface useUserOptions {
   redirectTo?: string;
 }
 
+/**
+ * 自定义 Hook：useUser
+ *
+ * @param options 配置选项
+ * @returns 返回用户上下文数据
+ */
 const useUser = (options: useUserOptions = {}) => {
   // props
   const { redirectTo = null } = options;
@@ -16,11 +22,12 @@ const useUser = (options: useUserOptions = {}) => {
   const router = useRouter();
 
   /**
-   * Checks for redirect url and user details from the API.
-   * if the user is not authenticated, user will be redirected
-   * to the provided redirectTo route.
+   * 检查重定向 URL 和从 API 获取的用户详情。
+   * 如果用户未经身份验证，则将用户重定向到提供的 redirectTo 路由。
    */
   useEffect(() => {
+    console.log("useUser useEffect",contextData);
+
     if (!contextData?.user || !redirectTo) return;
 
     if (!contextData?.user) {
@@ -35,6 +42,8 @@ const useUser = (options: useUserOptions = {}) => {
       }
     }
   }, [contextData?.user, redirectTo, router]);
+
+  console.log("useUser",contextData);
 
   return { ...contextData };
 };

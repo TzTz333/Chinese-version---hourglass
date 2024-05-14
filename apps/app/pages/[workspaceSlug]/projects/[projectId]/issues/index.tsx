@@ -55,7 +55,7 @@ const ProjectIssues: NextPage<UserAuth> = (props) => {
               }}
             >
               <PlusIcon className="w-4 h-4" />
-              Add Issue
+              添加Issue
             </PrimaryButton>
           </div>
         }

@@ -104,7 +104,7 @@ const SingleCycle: React.FC<UserAuth> = (props) => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Selected issues could not be added to the cycle. Please try again.",
+          message: "无法将选定的问题添加到循环中！请再试一次！",
         });
       });
   };

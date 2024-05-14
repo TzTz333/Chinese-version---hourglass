@@ -63,10 +63,15 @@ export const ImageUploadModal: React.FC<Props> = ({
           setImage(null);
 
           if (value) {
-            const index = value.indexOf(".com");
-            const asset = value.substring(index + 5);
+            console.log("value:", value);
 
-            fileServices.deleteUserFile(asset);
+            const index = value.indexOf(".com");
+            console.log("index:", index);
+            const asset = index !== -1 ? value.substring(index + 5) : value.substring(1);
+
+            console.log("asset:", asset);
+
+            fileServices.deleteUserFile(asset + '/');
           }
         })
         .catch((err) => {

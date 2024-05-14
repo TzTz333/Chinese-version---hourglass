@@ -141,9 +141,9 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
         <div className="space-y-8 sm:space-y-12">
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Logo</h4>
+              <h4 className="text-xl font-semibold">Workspace Logo</h4>
               <p className="text-gray-500">
-                Max file size is 5MB. Supported file types are .jpg and .png.
+                
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -167,13 +167,14 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
                   )}
                 </button>
                 <div>
-                  <SecondaryButton
+                  {/* <SecondaryButton
                     onClick={() => {
                       setIsImageUploadModalOpen(true);
                     }}
                   >
                     {isImageUploading ? "Uploading..." : "Upload"}
-                  </SecondaryButton>
+                  </SecondaryButton> */}
+                  <p> </p>
                 </div>
               </div>
             </div>
@@ -181,7 +182,7 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
               <h4 className="text-xl font-semibold">URL</h4>
-              <p className="text-gray-500">Your workspace URL.</p>
+              <p className="text-gray-500">你工作区的URL.</p>
             </div>
             <div className="col-span-12 flex items-center gap-2 sm:col-span-6">
               <Input

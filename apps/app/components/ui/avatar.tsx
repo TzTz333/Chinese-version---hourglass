@@ -19,7 +19,10 @@ type AvatarProps = {
   width?: string;
   fontSize?: string
 };
-
+// const imageLoader = ({ src, width, quality }) => {
+//   const imageurl = src.substring(8);
+//   return `http://localhost:8000/api/users/file-assets${imageurl}?w=${width}&q=${quality || 75}`
+// }
 export const Avatar: React.FC<AvatarProps> = ({ user, index, height="20px", width="20px", fontSize="12px" }) => (
   <div className={`relative rounded-full ${index && index !== 0 ? "-ml-3.5" : ""}`} style={{
     height: height,
@@ -37,6 +40,7 @@ export const Avatar: React.FC<AvatarProps> = ({ user, index, height="20px", widt
       >
         <Image
           src={user.avatar}
+          // loader={imageLoader}
           height="100%"
           width="100%"
           className="rounded-full"

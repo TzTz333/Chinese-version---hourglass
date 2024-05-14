@@ -113,7 +113,7 @@ const ProjectPages: NextPage<UserAuth> = (props) => {
         setToastAlert({
           type: "success",
           title: "Success!",
-          message: "Page created successfully.",
+          message: "成功创建页面！",
         });
         router.push(`/${workspaceSlug}/projects/${projectId}/pages/${res.id}`);
         reset();
@@ -142,7 +142,7 @@ const ProjectPages: NextPage<UserAuth> = (props) => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Page could not be created. Please try again",
+          message: "无法创建页面，请再试一次！",
         });
       });
   };

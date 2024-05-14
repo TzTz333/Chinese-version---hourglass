@@ -4,24 +4,26 @@ from datetime import timedelta
 from django.core.management.utils import get_random_secret_key
 
 
+# 获取当前文件的绝对路径的上两级目录，作为项目的基础目录
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+# 从环境变量获取秘密密钥，如果没有则生成一个随机的秘密密钥
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# 安全警告：生产环境中不应该开启DEBUG模式！
 DEBUG = True
 
+# 允许处理请求的主机/域名列表，为空表示不限制
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# 应用定义部分
 INSTALLED_APPS = [
+    # Django自带应用
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    # Inhouse apps
+    # 自定义应用
     "plane.analytics",
     "plane.api",
     "plane.bgtasks",
@@ -29,29 +31,33 @@ INSTALLED_APPS = [
     "plane.utils",
     "plane.web",
     "plane.middleware",
-    # Third-party things
+    # 第三方应用
     "rest_framework",
     "rest_framework.authtoken",
     "rest_framework_simplejwt.token_blacklist",
-    "corsheaders",
-    "taggit",
-    "django_rq",
+    "corsheaders", # 跨域请求处理
+    "taggit", # 标签管理
+    "django_rq", # Redis队列
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    # 中间件配置，执行请求|响应处理的各个阶段
+    "corsheaders.middleware.CorsMiddleware", # 处理跨域请求的中间件
     "django.middleware.security.SecurityMiddleware",
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",  # 静态文件压缩、缓存管理
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # 获取当前请求用户信息的中间件
     "crum.CurrentRequestUserMiddleware",
+    # Gzip压缩中间件
     "django.middleware.gzip.GZipMiddleware",
 ]
 
 REST_FRAMEWORK = {
+     # DRF（Django Rest Framework）相关配置，默认认证类、权限类等设置。
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -61,6 +67,7 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = (
+     # 认证后端配置，默认使用Django内置的模型后端。
     "django.contrib.auth.backends.ModelBackend",  # default
     # "guardian.backends.ObjectPermissionBackend",
 )
@@ -68,6 +75,7 @@ AUTHENTICATION_BACKENDS = (
 ROOT_URLCONF = "plane.urls"
 
 TEMPLATES = [
+    # 模板引擎设置
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
@@ -87,6 +95,7 @@ TEMPLATES = [
 
 
 JWT_AUTH = {
+    # JWT相关配置
     "JWT_ENCODE_HANDLER": "rest_framework_jwt.utils.jwt_encode_handler",
     "JWT_DECODE_HANDLER": "rest_framework_jwt.utils.jwt_decode_handler",
     "JWT_PAYLOAD_HANDLER": "rest_framework_jwt.utils.jwt_payload_handler",
@@ -116,11 +125,11 @@ ASGI_APPLICATION = "plane.asgi.application"
 
 SITE_ID = 1
 
-# User Model
+# 自定义用户模型
 AUTH_USER_MODEL = "db.User"
 
 # Database
-
+# 数据库连接配置
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -130,7 +139,7 @@ DATABASES = {
 
 
 # Password validation
-
+# 密码验证器配置
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -147,18 +156,19 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Static files (CSS, JavaScript, Images)
-
+# 静态文件，CSS、JS、图片等资源的配置
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static-assets", "collected-static")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
+# 静态文件压缩、缓存管理
 # Media Settings
 MEDIA_ROOT = "mediafiles"
 MEDIA_URL = "/media/"
 
 
 # Internationalization
-
+# 国际化配置
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "Asia/Kolkata"
@@ -171,17 +181,18 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# 邮箱配置，用于发送邮件，如用户注册、密码重置等
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# Host for sending e-mail.
+# 用于发送电子邮件的host。
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
-# Port for sending e-mail.
+# 用于发送电子邮件的端口
 EMAIL_PORT = 587
-# Optional SMTP authentication information for EMAIL_HOST.
+# EMAIL_HOST的可选 SMTP 身份验证信息
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
-
+# SIMPLE_JWT库相关配置，用于简化JWT操作。
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10080),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=43200),

@@ -74,14 +74,14 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
         setToastAlert({
           type: "success",
           title: "Success!",
-          message: "Successfully added the project to favorites.",
+          message: "已成功将项目添加到收藏夹！",
         });
       })
       .catch(() => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Couldn't remove the project from favorites. Please try again.",
+          message: "无法从收藏夹中删除该项目！请再试一次！",
         });
       });
   };
@@ -110,14 +110,14 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
         setToastAlert({
           type: "success",
           title: "Success!",
-          message: "Successfully removed the project from favorites.",
+          message: "已成功将项目从收藏夹中删除！",
         });
       })
       .catch(() => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Couldn't remove the project from favorites. Please try again.",
+          message: "无法从收藏夹中删除该项目！请再试一次！",
         });
       });
   };
@@ -130,7 +130,7 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
       setToastAlert({
         type: "success",
         title: "Link Copied!",
-        message: "Project link copied to clipboard.",
+        message: "项目链接已复制到剪贴板！",
       });
     });
   };
@@ -164,11 +164,11 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
                       className="flex cursor-pointer items-center gap-1 rounded bg-green-600 px-2 py-1 text-xs"
                     >
                       <PlusIcon className="h-3 w-3" />
-                      <span>Select to Join</span>
+                      <span>选择加入</span>
                     </button>
                   ) : (
                     <span className="cursor-default rounded bg-green-600 px-2 py-1 text-xs">
-                      Member
+                      成员
                     </span>
                   )}
                   {project.is_favorite && (
@@ -221,7 +221,7 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
                       <CustomMenu.MenuItem onClick={() => setDeleteProject(project.id)}>
                         <span className="flex items-center justify-start gap-2">
                           <TrashIcon className="h-4 w-4" />
-                          <span>Delete project</span>
+                          <span>删除项目</span>
                         </span>
                       </CustomMenu.MenuItem>
                     )}
@@ -229,21 +229,21 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
                       <CustomMenu.MenuItem onClick={handleRemoveFromFavorites}>
                         <span className="flex items-center justify-start gap-2">
                           <StarIcon className="h-4 w-4" />
-                          <span>Remove from favorites</span>
+                          <span>从收藏夹中删除</span>
                         </span>
                       </CustomMenu.MenuItem>
                     ) : (
                       <CustomMenu.MenuItem onClick={handleAddToFavorites}>
                         <span className="flex items-center justify-start gap-2">
                           <StarIcon className="h-4 w-4" />
-                          <span>Add to favorites</span>
+                          <span>添加到收藏夹</span>
                         </span>
                       </CustomMenu.MenuItem>
                     )}
                     <CustomMenu.MenuItem onClick={handleCopyText}>
                       <span className="flex items-center justify-start gap-2">
                         <LinkIcon className="h-4 w-4" />
-                        <span>Copy project link</span>
+                        <span>复制项目链接</span>
                       </span>
                     </CustomMenu.MenuItem>
                   </CustomMenu>

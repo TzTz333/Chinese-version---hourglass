@@ -19,9 +19,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "plane",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
+        "USER": "postgres",
+        "PASSWORD": "testpassword",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 

@@ -1,30 +1,33 @@
+// 导入 React 及其相关钩子函数
 import React, { useEffect, useState } from "react";
 
+// 导入 Next.js 的 Image 组件，用于优化图片加载
 import Image from "next/image";
 
-// react-hook-form
+// 导入 react-hook-form 库，用于表单处理
 import { Controller, useForm } from "react-hook-form";
-// lib
+// 导入认证相关的库函数，用于权限验证
 import { requiredAuth } from "lib/auth";
-// services
+// 导入服务层，用于处理文件和用户信息的请求
 import fileService from "services/file.service";
 import userService from "services/user.service";
-// hooks
+// 导入自定义钩子，用于获取用户信息和显示提示信息
 import useUser from "hooks/use-user";
 import useToast from "hooks/use-toast";
-// layouts
+// 导入布局组件，这里是应用的布局组件
 import AppLayout from "layouts/app-layout";
-// components
+// 导入核心组件，这里是图片上传模态框
 import { ImageUploadModal } from "components/core";
-// ui
+// 导入 UI 组件，包括选择器、按钮、输入框、加载动画等
 import { CustomSelect, DangerButton, Input, SecondaryButton, Spinner } from "components/ui";
+// 导入面包屑导航相关组件
 import { BreadcrumbItem, Breadcrumbs } from "components/breadcrumbs";
-// icons
+// 导入图标组件
 import { UserIcon } from "@heroicons/react/24/outline";
-// types
+// 导入类型定义和 Next.js 特定类型
 import type { NextPage, GetServerSidePropsContext } from "next";
 import type { IUser } from "types";
-// constants
+// 导入常量，这里是用户角色常量定义
 import { USER_ROLES } from "constants/workspace";
 
 const defaultValues: Partial<IUser> = {
@@ -36,10 +39,12 @@ const defaultValues: Partial<IUser> = {
 };
 
 const Profile: NextPage = () => {
+  // 定义状态管理变量：编辑状态、删除状态、图片上传模态框开关状态等
   const [isEditing, setIsEditing] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
   const [isImageUploadModalOpen, setIsImageUploadModalOpen] = useState(false);
 
+  // 使用 useForm 钩子初始化表单并设置默认值与规则等
   const {
     register,
     handleSubmit,
@@ -50,13 +55,16 @@ const Profile: NextPage = () => {
     formState: { errors, isSubmitting },
   } = useForm<IUser>({ defaultValues });
 
+  // 使用自定义 hook 获取用户信息和设置 Toast 提醒信息
   const { setToastAlert } = useToast();
   const { user: myProfile, mutateUser } = useUser();
 
+  // 使用 useEffect 钩子在用户信息更新时重置表单值
   useEffect(() => {
     reset({ ...defaultValues, ...myProfile });
   }, [myProfile, reset]);
 
+  // 定义表单提交逻辑，异步提交用户信息更改请求，并处理响应结果
   const onSubmit = async (formData: IUser) => {
     const payload: Partial<IUser> = {
       first_name: formData.first_name,
@@ -64,6 +72,8 @@ const Profile: NextPage = () => {
       avatar: formData.avatar,
       role: formData.role,
     };
+
+    console.log("payload:", payload);
 
     await userService
       .updateUser(payload)
@@ -88,6 +98,7 @@ const Profile: NextPage = () => {
       );
   };
 
+  // 定义删除头像的逻辑。如果 URL 存在，则发送删除请求。
   const handleDelete = (url: string | null | undefined, updateUser: boolean = false) => {
     if (!url) return;
 
@@ -129,7 +140,7 @@ const Profile: NextPage = () => {
       }}
       breadcrumbs={
         <Breadcrumbs>
-          <BreadcrumbItem title="My Profile" />
+          <BreadcrumbItem title="我的个人资料" />
         </Breadcrumbs>
       }
       settingsLayout
@@ -150,9 +161,9 @@ const Profile: NextPage = () => {
         <div className="space-y-8 sm:space-y-12">
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Profile Picture</h4>
+              <h4 className="text-xl font-semibold">个人资料设置</h4>
               <p className="text-gray-500">
-                Max file size is 5MB. Supported file types are .jpg and .png.
+              最大文件大小为 5MB。支持的文件类型为 .jpg 和 .png
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -198,9 +209,9 @@ const Profile: NextPage = () => {
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Full Name</h4>
+              <h4 className="text-xl font-semibold">昵称</h4>
               <p className="text-gray-500">
-                This name will be reflected on all the projects you are working on.
+               此名称将在你正在处理的所有项目中显示
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6 flex items-center gap-2">
@@ -228,7 +239,7 @@ const Profile: NextPage = () => {
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
               <h4 className="text-xl font-semibold">Email</h4>
-              <p className="text-gray-500">The email address that you are using.</p>
+              <p className="text-gray-500">正在使用的电子邮件地址</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               <Input
@@ -244,8 +255,8 @@ const Profile: NextPage = () => {
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Role</h4>
-              <p className="text-gray-500">Add your role.</p>
+              <h4 className="text-xl font-semibold">角色</h4>
+              <p className="text-gray-500">添加你的角色</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               <Controller
@@ -256,7 +267,7 @@ const Profile: NextPage = () => {
                   <CustomSelect
                     value={value}
                     onChange={onChange}
-                    label={value ? value.toString() : "Select your role"}
+                    label={value ? value.toString() : "选择你的角色"}
                     width="w-full"
                     input
                     position="right"

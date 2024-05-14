@@ -102,7 +102,7 @@ const ProjectCycles: NextPage<UserAuth> = (props) => {
           }}
         >
           <PlusIcon className="w-4 h-4" />
-          Add Cycle
+          添加Cycle
         </PrimaryButton>
       }
     >
@@ -114,7 +114,7 @@ const ProjectCycles: NextPage<UserAuth> = (props) => {
       <div className="space-y-8">
         <div className="flex flex-col gap-5">
           {currentAndUpcomingCycles && currentAndUpcomingCycles.current_cycle.length > 0 && (
-            <h3 className="text-3xl font-semibold text-black">Current Cycle</h3>
+            <h3 className="text-3xl font-semibold text-black">当前的Cycle</h3>
           )}
           <div className="space-y-5">
             <CyclesList
@@ -126,7 +126,7 @@ const ProjectCycles: NextPage<UserAuth> = (props) => {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <h3 className="text-3xl font-semibold text-black">Other Cycles</h3>
+          <h3 className="text-3xl font-semibold text-black">其他的Cycles</h3>
           <div>
             <Tab.Group>
               <Tab.List
@@ -142,7 +142,7 @@ const ProjectCycles: NextPage<UserAuth> = (props) => {
                     }`
                   }
                 >
-                  Upcoming
+                  将要进行
                 </Tab>
                 <Tab
                   className={({ selected }) =>
@@ -153,7 +153,7 @@ const ProjectCycles: NextPage<UserAuth> = (props) => {
                     }`
                   }
                 >
-                  Completed
+                  已完成
                 </Tab>
                 <Tab
                   className={({ selected }) =>
@@ -164,7 +164,7 @@ const ProjectCycles: NextPage<UserAuth> = (props) => {
                     }`
                   }
                 >
-                  Drafts
+                  草稿
                 </Tab>
               </Tab.List>
               <Tab.Panels>

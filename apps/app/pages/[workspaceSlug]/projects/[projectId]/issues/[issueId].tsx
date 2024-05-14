@@ -183,7 +183,7 @@ const IssueDetailsPage: NextPage<UserAuth> = (props) => {
                       ))
                     ) : (
                       <CustomMenu.MenuItem className="flex items-center gap-2 whitespace-nowrap p-2 text-left text-xs text-gray-900">
-                        No other sibling issues
+                        无其他同级问题。
                       </CustomMenu.MenuItem>
                     )}
                   </CustomMenu>
@@ -199,7 +199,7 @@ const IssueDetailsPage: NextPage<UserAuth> = (props) => {
               </div>
             </div>
             <div className="space-y-5 bg-secondary pt-3">
-              <h3 className="text-lg">Comments/Activity</h3>
+              <h3 className="text-lg">评论/活动</h3>
               <IssueActivitySection />
               <AddComment />
             </div>

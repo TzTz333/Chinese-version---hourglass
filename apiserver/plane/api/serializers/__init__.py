@@ -1,3 +1,7 @@
+# 组织和管理多个序列化器，Serializer
+# 序列化器在Django REST Framework（DRF）中用于将模型实例转换为JSON格式，
+#便于前后端数据交换，或者将接收到的JSON数据反序列化回模型实例。
+
 from .base import BaseSerializer
 from .people import (
     ChangePasswordSerializer,

@@ -5,7 +5,8 @@ import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Sector } from "rechar
 // types
 import { IUserStateDistribution } from "types";
 // constants
-import { STATE_GROUP_COLORS } from "constants/state";
+import { STATE_GROUP_COLORS, STATE_GROUP_NAMES } from "constants/state";
+
 
 type Props = {
   groupedIssues: IUserStateDistribution[] | undefined;
@@ -44,10 +45,11 @@ export const IssuesPieChart: React.FC<Props> = ({ groupedIssues }) => {
     const ey = my;
     const textAnchor = cos >= 0 ? "start" : "end";
 
+
     return (
       <g>
         <text x={cx} y={cy} dy={8} className="capitalize" textAnchor="middle" fill={fill}>
-          {payload.state_group}
+          {STATE_GROUP_NAMES[payload.state_group.toLowerCase()]}
         </text>
         <Sector
           cx={cx}
@@ -78,7 +80,7 @@ export const IssuesPieChart: React.FC<Props> = ({ groupedIssues }) => {
 
   return (
     <div>
-      <h3 className="mb-2 font-semibold">Issues by States</h3>
+      <h3 className="mb-2 font-semibold">按状态分类的问题</h3>
       <div className="rounded-[10px] border bg-white p-4">
         <ResponsiveContainer width="100%" height={320}>
           <PieChart>
@@ -108,11 +110,11 @@ export const IssuesPieChart: React.FC<Props> = ({ groupedIssues }) => {
               align="right"
               height={36}
               payload={[
-                { value: "Backlog", type: "square", color: STATE_GROUP_COLORS.backlog },
-                { value: "Unstarted", type: "square", color: STATE_GROUP_COLORS.unstarted },
-                { value: "Started", type: "square", color: STATE_GROUP_COLORS.started },
-                { value: "Completed", type: "square", color: STATE_GROUP_COLORS.completed },
-                { value: "Cancelled", type: "square", color: STATE_GROUP_COLORS.cancelled },
+                { value: "待办", type: "square", color: STATE_GROUP_COLORS.backlog },
+                { value: "未开始", type: "square", color: STATE_GROUP_COLORS.unstarted },
+                { value: "正在进行", type: "square", color: STATE_GROUP_COLORS.started },
+                { value: "已完成", type: "square", color: STATE_GROUP_COLORS.completed },
+                { value: "已取消", type: "square", color: STATE_GROUP_COLORS.cancelled },
               ]}
             />
           </PieChart>

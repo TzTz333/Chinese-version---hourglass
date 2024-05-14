@@ -76,7 +76,7 @@ class FileServices extends APIService {
         query,
       },
     })
-      .then((response) => response?.data?.results ?? response?.data)
+      .then((response) => response?.data?.results) //记录一个错误
       .catch((error) => {
         throw error?.response?.data;
       });

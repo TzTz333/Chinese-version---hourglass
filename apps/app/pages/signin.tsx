@@ -6,6 +6,7 @@ import Image from "next/image";
 // hooks
 import useUser from "hooks/use-user";
 import useToast from "hooks/use-toast";
+
 // services
 import authenticationService from "services/authentication.service";
 // layouts
@@ -23,7 +24,9 @@ import { Spinner } from "components/ui";
 import Logo from "public/logo.png";
 // types
 import type { NextPage } from "next";
-
+/**
+ * Sign In 页面组件
+ */
 const SignInPage: NextPage = () => {
   // router
   const router = useRouter();
@@ -34,14 +37,35 @@ const SignInPage: NextPage = () => {
 
   const { setToastAlert } = useToast();
 
+  /**
+   * 当登录成功时的回调函数
+   */
   const onSignInSuccess = useCallback(async () => {
+
+    console.log("onSignInSuccess!!!");
     setLoading(true);
+    console.log("hhhhhhhh");
+
     await mutateUser();
+    console.log("mutateUser");
+    console.log("router",router);
+
     const nextLocation = router.asPath.split("?next=")[1];
+
     if (nextLocation) await router.push(nextLocation as string);
-    else await router.push("/");
+    else {
+      console.log("router.push");
+      await router.push("/");
+      console.log("router.push!!!!", router);
+    }
   }, [mutateUser, router]);
 
+
+  /**
+   * 处理 Google 登录
+   * @param clientId - Google 客户端 ID
+   * @param credential - Google 登录凭证
+   */
   const handleGoogleSignIn = ({ clientId, credential }: any) => {
     if (clientId && credential) {
       setLoading(true);
@@ -66,6 +90,10 @@ const SignInPage: NextPage = () => {
     }
   };
 
+  /**
+   * 处理 Github 登录
+   * @param credential - Github 登录凭证
+   */
   const handleGithubSignIn = useCallback(
     (credential: string) => {
       setLoading(true);
@@ -99,7 +127,7 @@ const SignInPage: NextPage = () => {
     >
       {isLoading && (
         <div className="absolute top-0 left-0 z-50 flex h-full w-full flex-col items-center justify-center gap-y-3 bg-white">
-          <h2 className="text-2xl text-gray-900">Signing in. Please wait...</h2>
+          <h2 className="text-2xl text-gray-900">登录中 请等待...</h2>
           <Spinner />
         </div>
       )}
@@ -109,7 +137,7 @@ const SignInPage: NextPage = () => {
             <div className="flex flex-col items-center justify-center gap-10">
               <Image src={Logo} height={80} width={80} alt="Plane Web Logo" />
               <h2 className="text-center text-xl font-medium text-black">
-                Sign In to your Plane Account
+                登录您的账户
               </h2>
             </div>
 

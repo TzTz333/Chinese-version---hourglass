@@ -22,6 +22,9 @@ import type { NextPage, GetServerSidePropsContext } from "next";
 // fetch-keys
 import { USER_WORKSPACE_DASHBOARD } from "constants/fetch-keys";
 
+/**
+ * 页面组件：工作区页面
+ */
 const WorkspacePage: NextPage = () => {
   const [month, setMonth] = useState(new Date().getMonth() + 1);
 
@@ -41,25 +44,6 @@ const WorkspacePage: NextPage = () => {
     <AppLayout noHeader={true}>
       <div className="h-full w-full">
         <div className="flex flex-col gap-8">
-          <div
-            className="flex flex-col bg-white justify-between gap-x-2 gap-y-6 rounded-lg px-8 py-6 text-black md:flex-row md:items-center md:py-3"
-            // style={{ background: "linear-gradient(90deg, #8e2de2 0%, #4a00e0 100%)" }}
-          >
-            <p className="font-semibold">Plane is a open source application, to support us you can star us on GitHub!</p>
-            <div className="flex items-center gap-2">
-              {/* <a href="#" target="_blank" rel="noopener noreferrer">
-                View roadmap
-              </a> */}
-              <a
-                href="https://github.com/makeplane/plane"
-                target="_blank"
-                className="rounded-md border-2 border-black font-medium px-3 py-1.5 text-sm duration-300"
-                rel="noopener noreferrer"
-              >
-                Star us on GitHub
-              </a>
-            </div>
-          </div>
           <IssuesStats data={workspaceDashboardData} />
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <IssuesList issues={workspaceDashboardData?.overdue_issues} type="overdue" />

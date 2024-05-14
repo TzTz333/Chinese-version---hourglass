@@ -1,15 +1,26 @@
 const { withSentryConfig } = require("@sentry/nextjs");
 const path = require("path");
 
+
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  //配置图片优化
   images: {
     domains: [
-      "vinci-web.s3.amazonaws.com",
-      "planefs-staging.s3.ap-south-1.amazonaws.com",
-      "planefs.s3.amazonaws.com",
-      "images.unsplash.com",
+        "vinci-web.s3.amazonaws.com",
+        "planefs-staging.s3.ap-south-1.amazonaws.com",
+        "planefs.s3.amazonaws.com",
+        "images.unsplash.com",
+        "localhost:8080",
+    ],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+        pathname: '/api/users/file-assets',
+      },
     ],
   },
   output: "standalone",

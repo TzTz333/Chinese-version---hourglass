@@ -53,6 +53,7 @@ export const UserDetails: React.FC<Props> = ({ user, setStep, setUserRole }) => 
       });
   };
 
+
   useEffect(() => {
     if (user) {
       reset({
@@ -95,7 +96,7 @@ export const UserDetails: React.FC<Props> = ({ user, setStep, setUserRole }) => 
             </div>
           </div>
           <div className="flex flex-col items-start justify-center gap-2.5 border-t border-gray-300 px-10 py-7">
-            <span>What is your role?</span>
+            <span>你在团队中的角色是？</span>
             <div className="w-full">
               <Controller
                 name="role"
@@ -108,7 +109,7 @@ export const UserDetails: React.FC<Props> = ({ user, setStep, setUserRole }) => 
                       onChange(value);
                       setUserRole(value ?? null);
                     }}
-                    label={value ? value.toString() : "Select your role"}
+                    label={value ? value.toString() : "选择你的角色"}
                     input
                     width="w-full"
                   >

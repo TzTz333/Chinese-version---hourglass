@@ -163,7 +163,7 @@ export const ProjectSidebarList: FC = () => {
           </div>
         )}
         <div className="flex flex-col space-y-2 p-3">
-          {!sidebarCollapse && <h5 className="text-sm font-semibold text-gray-400">Projects</h5>}
+          {!sidebarCollapse && <h5 className="text-sm font-semibold text-gray-400">  项  目  </h5>}
           {projects ? (
             <>
               {normalProjects.length > 0 ? (

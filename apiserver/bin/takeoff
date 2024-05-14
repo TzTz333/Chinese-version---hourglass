@@ -1,9 +1,19 @@
+# 自动化部署Django项目和启动Gunicorn服务器
 #!/bin/bash
-set -e
-python manage.py wait_for_db
-python manage.py migrate
+set -e  # 如果任何语句的执行结果不是true则应该立即退出。
+
+python manage.py wait_for_db  # 执行Django自定义命令wait_for_db，等待数据库就绪。
+python manage.py migrate  # 执行Django迁移命令，创建或更新数据库表结构。
 
 # Create a Default User
-python bin/user_script.py
+python bin/user_script.py  # 运行一个Python脚本来创建一个默认用户。
 
-exec gunicorn -w 8 -k uvicorn.workers.UvicornWorker plane.asgi:application --bind 0.0.0.0:8000 --config gunicorn.config.py --max-requests 1200 --max-requests-jitter 1000 --access-logfile -
+# 使用gunicorn作为WSGI HTTP服务器来运行Django项目，下面是其参数解读：
+exec gunicorn -w 8 \  # -w 8: 使用8个worker进程来运行我们的应用。
+-k uvicorn.workers.UvicornWorker \  # -k: 指定使用uvicorn的工作模式，适用于运行ASGI应用。
+plane.asgi:application \  # 指定Gunicorn加载ASGI应用，plane.asgi:application指明了ASGI应用的模块路径和变量名。
+--bind 0.0.0.0:8000 \  # --bind: 绑定服务器监听的网络地址和端口号。
+--config gunicorn.config.py \  # --config: 指定gunicorn配置文件的路径。
+--max-requests 1200 \  # --max-requests: 设置每个worker处理请求的最大数量，之后将会重启worker。这有助于防止内存泄露。
+--max-requests-jitter 1000 \  # --max-requests-jitter: 在这个设置上下浮动的请求量，在重启前给每个worker分配的请求将在1100到1300之间变化。
+--access-logfile -   # --access-logfile -: 记录访问日志到标准输出，可以通过docker或Kubernetes日志收集机制进行收集。

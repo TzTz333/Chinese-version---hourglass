@@ -148,10 +148,10 @@ export const CustomSearchSelect = ({
                       </Combobox.Option>
                     ))
                   ) : (
-                    <p className="text-center text-gray-500">No matching results</p>
+                    <p className="text-center text-gray-500">没有匹配结果</p>
                   )
                 ) : (
-                  <p className="text-center text-gray-500">Loading...</p>
+                  <p className="text-center text-gray-500">加载...</p>
                 )}
               </div>
               {footerOption}

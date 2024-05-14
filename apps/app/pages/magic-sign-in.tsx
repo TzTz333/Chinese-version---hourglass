@@ -28,12 +28,17 @@ const MagicSignIn: NextPage = () => {
 
   const { mutateUser } = useUser();
 
+  //这个是一个异步函数，用来处理登录，
+  //当password和key都存在时，调用magicSignIn方法，然后根据返回的结果进行相应的操作
   useEffect(() => {
     setIsSigningIn(true);
     setErrorSignIn(undefined);
+    //如果password和key都不存在，直接返回
     if (!password || !key) return;
+    //调用magicSignIn方法，然后根据返回的结果进行相应的操作
     authenticationService
       .magicSignIn({ token: password, key })
+      //如果登录成功，调用mutateUser方法，然后跳转到首页，如果用户没有onboarded，跳转到invitations页面
       .then(async (res) => {
         setIsSigningIn(false);
         await mutateUser();
@@ -48,6 +53,9 @@ const MagicSignIn: NextPage = () => {
   }, [password, key, mutateUser, router]);
 
   return (
+    //返回一个DefaultLayout组件，然后根据isSigningIn和errorSigningIn的值，显示不同的内容，
+    //如果isSigningIn为true，显示“Signing you in...”，
+    //如果errorSigningIn为true，显示“Error”，
     <DefaultLayout
       meta={{
         title: "Magic Sign In",
@@ -92,6 +100,7 @@ const MagicSignIn: NextPage = () => {
             </p>
           </div>
         ) : (
+          //如果都不是，显示“Success”，然后跳转到首页
           <div className="flex h-full w-full flex-col items-center justify-center gap-y-2">
             <h2 className="text-4xl">Success</h2>
             <p className="text-sm text-gray-600">Redirecting you to the app...</p>

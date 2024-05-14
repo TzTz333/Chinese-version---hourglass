@@ -1,28 +1,28 @@
 export const NETWORK_CHOICES = { "0": "Secret", "2": "Public" };
 
 export const GROUP_CHOICES = {
-  backlog: "Backlog",
-  unstarted: "Unstarted",
-  started: "Started",
-  completed: "Completed",
-  cancelled: "Cancelled",
+  backlog: "待办",
+  unstarted: "未开始",
+  started: "正在进行",
+  completed: "已完成",
+  cancelled: "已取消",
 };
 
-export const PRIORITIES = ["urgent", "high", "medium", "low", null];
+export const PRIORITIES = ["紧急", "高", "中", "低", null];
 
 export const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "一月",
+  "二月",
+  "三月",
+  "四月",
+  "五月",
+  "六月",
+  "七月",
+  "八月",
+  "九月",
+  "十月",
+  "十一月",
+  "十二月",
 ];
 
-export const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+export const DAYS = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];

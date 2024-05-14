@@ -52,7 +52,7 @@ const ProjectsPage: NextPage = () => {
           }}
         >
           <PlusIcon className="w-4 h-4" />
-          Add Project
+          添加项目
         </PrimaryButton>
       }
     >

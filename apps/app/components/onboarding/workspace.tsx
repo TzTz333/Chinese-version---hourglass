@@ -174,6 +174,7 @@ export const Workspace: React.FC<Props> = ({ setStep, setWorkspace }) => {
                   type="submit"
                   className="w-1/2 text-center"
                   size="md"
+                  onClick={submitInvitations}
                   disabled={isJoiningWorkspaces || invitationsRespond.length === 0}
                 >
                   Join Workspace

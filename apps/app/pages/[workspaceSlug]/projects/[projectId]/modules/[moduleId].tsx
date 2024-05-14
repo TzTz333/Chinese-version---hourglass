@@ -104,7 +104,7 @@ const SingleModule: React.FC<UserAuth> = (props) => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Selected issues could not be added to the module. Please try again.",
+          message: "无法将选定的问题添加到模块中，请再试一次！",
         })
       );
   };
@@ -186,13 +186,13 @@ const SingleModule: React.FC<UserAuth> = (props) => {
               } duration-300`}
             >
               <EmptySpace
-                title="You don't have any issue yet."
-                description="Modules are smaller, focused projects that help you group and organize issues within a specific time frame."
+                title="你还没有任何issue"
+                description="modules是更小、更专注的项目，它们帮助你在特定的时间范围内对Issue进行分组和组织。"
                 Icon={RectangleStackIcon}
               >
                 <EmptySpaceItem
-                  title="Create a new issue"
-                  description="Click to create a new issue inside the module."
+                  title="创建一个新的issue"
+                  description="点击可以在module内创建一个新Issue"
                   Icon={PlusIcon}
                   action={() => {
                     const e = new KeyboardEvent("keydown", {

@@ -1,16 +1,16 @@
 export const monthOptions = [
-  { value: "1", label: "January" },
-  { value: "2", label: "February" },
-  { value: "3", label: "March" },
-  { value: "4", label: "April" },
-  { value: "5", label: "May" },
-  { value: "6", label: "June" },
-  { value: "7", label: "July" },
-  { value: "8", label: "August" },
-  { value: "9", label: "September" },
-  { value: "10", label: "October" },
-  { value: "11", label: "November" },
-  { value: "12", label: "December" },
+  { value: "1", label: "一月" },
+  { value: "2", label: "二月" },
+  { value: "3", label: "三月" },
+  { value: "4", label: "四月" },
+  { value: "5", label: "五月" },
+  { value: "6", label: "六月" },
+  { value: "7", label: "七月" },
+  { value: "8", label: "八月" },
+  { value: "9", label: "九月" },
+  { value: "10", label: "十月" },
+  { value: "11", label: "十一月" },
+  { value: "12", label: "十二月" },
 ];
 
 export const yearOptions = [

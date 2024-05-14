@@ -17,6 +17,16 @@ type Props = {
 };
 
 export const IssuesList: React.FC<Props> = ({ issues, type }) => {
+  //翻译函数
+  const translateType = (type: string) => {
+    const typesTranslation: { [key: string]: string } = {
+      overdue: "逾期",
+      upcoming: "待办",
+    };
+  
+    return typesTranslation[type] || type;
+  };
+
   const router = useRouter();
   const { workspaceSlug } = router.query;
 
@@ -34,7 +44,7 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
 
   return (
     <div>
-      <h3 className="mb-2 font-semibold capitalize">{type} Issues</h3>
+      <h3 className="mb-2 font-semibold capitalize">{translateType(type)}事项</h3>
       {issues ? (
         <div className="rounded-[10px] border bg-white p-4 text-sm h-[calc(100%-2.25rem)]">
           <div
@@ -42,9 +52,9 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
               type === "overdue" ? "bg-red-100" : "bg-gray-100"
             }`}
           >
-            <h4 className="capitalize">{type}</h4>
+            <h4 className="capitalize">{translateType(type)}</h4>
             <h4 className="col-span-2">Issue</h4>
-            <h4>Due Date</h4>
+            <h4>截止日期</h4>
           </div>
           <div className="max-h-72 overflow-y-scroll">
             {issues.length > 0 ? (
@@ -86,9 +96,8 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
                 <div className="flex flex-col items-center gap-4">
                   <LayerDiagonalIcon height={60} width={60} />
                   <span>
-                    No issues found. Use{" "}
-                    <pre className="inline rounded bg-gray-200 px-2 py-1">C</pre> shortcut to create
-                    a new issue
+                    没有发现问题。 使用快捷键{" "}
+                    <pre className="inline rounded bg-gray-200 px-2 py-1">C</pre> 创建新问题。
                   </span>
                 </div>
               </div>

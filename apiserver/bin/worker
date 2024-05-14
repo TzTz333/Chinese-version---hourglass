@@ -1,6 +1,8 @@
 #!/bin/bash
-set -e
+set -e  # 当任何一行命令执行失败时，退出脚本。这确保了脚本在遇到错误时不会盲目地继续执行。
 
-python manage.py wait_for_db
-python manage.py migrate
-python manage.py rqworker
+python manage.py wait_for_db  # 运行一个自定义的Django管理命令wait_for_db。此命令通常用于检查数据库是否就绪。如果数据库未就绪，它将等待直到数据库可以连接。
+
+python manage.py migrate  # 运行Django的migrate命令以应用所有未应用的迁移。这确保了在应用程序开始接收请求之前，数据库结构是最新的。
+
+python manage.py rqworker  # 启动一个RQ（Redis Queue）工作进程。RQ是一个简单的Python库，用于队列任务和处理后台工作。这个命令将监听来自Redis队列的任务并执行它们。

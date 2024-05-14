@@ -154,14 +154,14 @@ const AppLayout: FC<AppLayoutProps> = ({
                   <div className="mb-12 space-y-6">
                     <div>
                       <h3 className="text-3xl font-semibold">
-                        {profilePage ? "Profile" : projectId ? "Project" : "Workspace"} Settings
+                        {profilePage ? "个人资料" : projectId ? "项目" : "工作区"} 设置
                       </h3>
                       <p className="mt-1 text-gray-600">
                         {profilePage
-                          ? "This information will be visible to only you."
+                          ? "-此信息仅自己可见-"
                           : projectId
-                          ? "This information will be displayed to every member of the project."
-                          : "This information will be displayed to every member of the workspace."}
+                          ? "-此信息将展示给项目的每个成员-"
+                          : "-此信息将展示给工作区的每个成员-"}
                       </p>
                     </div>
                     <SettingsNavbar profilePage={profilePage} />

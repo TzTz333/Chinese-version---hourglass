@@ -66,7 +66,7 @@ const SendWorkspaceInvitationModal: React.FC<Props> = ({
         setToastAlert({
           title: "Success",
           type: "success",
-          message: "Member invited successfully",
+          message: "成功邀请成员！",
         });
       })
       .catch((err) => console.log(err));
@@ -103,10 +103,10 @@ const SendWorkspaceInvitationModal: React.FC<Props> = ({
                   <div className="space-y-5">
                     <div>
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                        Members
+                        成员们
                       </Dialog.Title>
                       <p className="text-sm text-gray-500">
-                        Invite members to work on your workspace.
+                        邀请成员加入工作区。
                       </p>
                     </div>
                     <div className="space-y-3">

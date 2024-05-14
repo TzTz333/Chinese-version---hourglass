@@ -49,6 +49,7 @@ export const SingleIntegration: React.FC<Props> = ({ integration }) => {
   const getKey = (pageIndex: number) => {
     if (!workspaceSlug || !integration) return;
 
+    //TODO: 给这个环境变量增加默认值
     return `${
       process.env.NEXT_PUBLIC_API_BASE_URL
     }/api/workspaces/${workspaceSlug}/workspace-integrations/${

@@ -42,3 +42,4 @@ const Crisp = () => {
   return <></>;
 };
 export default Crisp;
+//这个文件是为了解决nextjs的ssr问题，因为nextjs是ssr的，所以会导致一些第三方库无法使用

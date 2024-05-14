@@ -8,7 +8,6 @@ import "styles/nprogress.css";
 
 // router
 import Router from "next/router";
-
 // nprogress
 import NProgress from "nprogress";
 
@@ -19,6 +18,7 @@ import { ThemeContextProvider } from "contexts/theme.context";
 // types
 import type { AppProps } from "next/app";
 
+//这个是为了解决nextjs的ssr问题，因为nextjs是ssr的，所以会导致一些第三方库无法使用，这个是为了解决这个问题
 const CrispWithNoSSR = dynamic(() => import("constants/crisp"), { ssr: false });
 
 // nprogress

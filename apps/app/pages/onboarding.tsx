@@ -22,6 +22,10 @@ import Logo from "public/onboarding/logo.svg";
 // types
 import type { NextPage, GetServerSidePropsContext } from "next";
 
+/**
+*登录页面组件。
+*为新用户呈现入职流程。
+ */
 const Onboarding: NextPage = () => {
   const [step, setStep] = useState(1);
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -90,6 +94,7 @@ const Onboarding: NextPage = () => {
     </DefaultLayout>
   );
 };
+
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const user = await requiredAuth(ctx.req?.headers.cookie);

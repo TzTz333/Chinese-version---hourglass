@@ -1,3 +1,4 @@
+//主要用于处理用户认证和重定向逻辑
 // cookies
 import { convertCookieStringToObject } from "./cookie";
 // types
@@ -14,6 +15,8 @@ export const requiredAuth = async (cookie?: string) => {
   let user: IUser | null = null;
 
   try {
+    console.log("request to: /api/users/me/",baseUrl,token);
+
     const data = await fetch(`${baseUrl}/api/users/me/`, {
       method: "GET",
       headers: {
@@ -25,6 +28,9 @@ export const requiredAuth = async (cookie?: string) => {
       .then((data) => data);
 
     user = data.user;
+
+    console.log("get responst: /api/users/me/",data);
+
   } catch (err) {
     console.error(err);
     user = null;
@@ -109,9 +115,9 @@ export const homePageRedirect = async (cookie?: string) => {
       },
     };
 
-  // FIXME: backend is returning object of user and workspace.
-  // Get KT if it's required to send user and workspace and if
-  // yes change below accordingly
+//修复:后端返回用户和工作空间的对象。
+//如果需要发送用户和工作空间，获取KT
+//是，修改如下
   if (!user.is_onboarded)
     return {
       redirect: {
@@ -127,6 +133,7 @@ export const homePageRedirect = async (cookie?: string) => {
   const cookies = convertCookieStringToObject(cookie);
   const token = cookies?.accessToken;
 
+  //获取用户的工作空间
   try {
     const data = await fetch(`${baseUrl}/api/users/me/workspaces/`, {
       method: "GET",
@@ -149,6 +156,7 @@ export const homePageRedirect = async (cookie?: string) => {
     };
   }
 
+  //获取用户最后活跃的工作空间，如果有，跳转到该工作空间，如果没有，跳转到第一个工作空间
   const lastActiveWorkspace = workspaces.find(
     (workspace) => workspace.id === user.last_workspace_id
   );
@@ -169,6 +177,7 @@ export const homePageRedirect = async (cookie?: string) => {
     };
   }
 
+  //如果用户没有工作空间，跳转到创建工作空间页面，如果有，跳转到第一个工作空间
   const invitations = await fetch(`${baseUrl}/api/users/me/invitations/workspaces/`, {
     method: "GET",
     headers: {

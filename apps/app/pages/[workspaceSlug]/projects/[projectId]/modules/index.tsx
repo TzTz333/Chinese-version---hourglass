@@ -80,7 +80,7 @@ const ProjectModules: NextPage<UserAuth> = (props) => {
           }}
         >
           <PlusIcon className="w-4 h-4" />
-          Add Module
+          添加Module
         </PrimaryButton>
       }
     >

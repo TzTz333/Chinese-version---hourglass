@@ -1,3 +1,5 @@
+# 处理与 Cycle 对象相关的 API 请求
+
 # Python imports
 import json
 
@@ -33,26 +35,34 @@ from plane.bgtasks.issue_activites_task import issue_activity
 from plane.utils.grouper import group_results
 from plane.utils.issue_filters import issue_filters
 
-
+# CycleViewSet 继承了 BaseViewSet，并指定了一些属性和方法来处理 Cycle 相关的操作。
 class CycleViewSet(BaseViewSet):
+    # 指定了该 ViewSet 使用的序列化器类。
     serializer_class = CycleSerializer
+    # 指定了该 ViewSet 操作的模型类。
     model = Cycle
+    # 指定了该 ViewSet 的权限类。
     permission_classes = [
         ProjectEntityPermission,
     ]
 
+    # 在创建一个新的 Cycle 对象时执行的操作。
     def perform_create(self, serializer):
+        # 调用序列化器的 save 方法来保存对象，并传入额外的项目 ID 和所有者信息。
         serializer.save(
             project_id=self.kwargs.get("project_id"), owned_by=self.request.user
         )
 
+    # 定义如何获取查询集合，即如何获取 Cycle 对象的列表。
     def get_queryset(self):
+        # 定义一个子查询，用于查找当前用户标记为收藏的 Cycle 对象。
         subquery = CycleFavorite.objects.filter(
             user=self.request.user,
             cycle_id=OuterRef("pk"),
             project_id=self.kwargs.get("project_id"),
             workspace__slug=self.kwargs.get("slug"),
         )
+        # 返回经过过滤的查询集合，包含多个注释和筛选条件。
         return self.filter_queryset(
             super()
             .get_queryset()
@@ -62,7 +72,8 @@ class CycleViewSet(BaseViewSet):
             .select_related("project")
             .select_related("workspace")
             .select_related("owned_by")
-            .annotate(is_favorite=Exists(subquery))
+            .annotate(is_favorite=Exists(subquery))  # 注释 Cycle 对象是否被收藏
+            # 注释各种状态的 Issue 数量
             .annotate(total_issues=Count("issue_cycle"))
             .annotate(
                 completed_issues=Count(
@@ -94,12 +105,14 @@ class CycleViewSet(BaseViewSet):
                     filter=Q(issue_cycle__issue__state__group="backlog"),
                 )
             )
-            .order_by("-is_favorite", "name")
-            .distinct()
+            .order_by("-is_favorite", "name")  # 按是否收藏和名称排序
+            .distinct()  # 确保结果集中不包含重复项
         )
 
+    # 处理创建 Cycle 对象的请求。
     def create(self, request, slug, project_id):
         try:
+            # 验证开始日期和结束日期都存在或都为空。
             if (
                 request.data.get("start_date", None) is None
                 and request.data.get("end_date", None) is None
@@ -108,14 +121,17 @@ class CycleViewSet(BaseViewSet):
                 and request.data.get("end_date", None) is not None
             ):
                 serializer = CycleSerializer(data=request.data)
+                # 如果数据有效，则保存并返回创建的 Cycle 对象。
                 if serializer.is_valid():
                     serializer.save(
                         project_id=project_id,
                         owned_by=request.user,
                     )
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
+                # 如果数据无效，则返回错误。
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
+                # 如果日期不满足要求，则返回错误信息。
                 return Response(
                     {
                         "error": "Both start date and end date are either required or are to be null"
@@ -123,18 +139,21 @@ class CycleViewSet(BaseViewSet):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         except Exception as e:
+            # 如果发生异常，则捕获并返回错误信息。
             capture_exception(e)
             return Response(
                 {"error": "Something went wrong please try again later"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+    # 处理部分更新 Cycle 对象的请求。
     def partial_update(self, request, slug, project_id, pk):
         try:
+            # 获取指定的 Cycle 对象。
             cycle = Cycle.objects.get(
                 workspace__slug=slug, project_id=project_id, pk=pk
             )
-
+            # 如果 Cycle 已完成，则不允许编辑。
             if cycle.end_date is not None and cycle.end_date < timezone.now().date():
                 return Response(
                     {
@@ -142,17 +161,19 @@ class CycleViewSet(BaseViewSet):
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
-
+            # 使用部分数据更新 Cycle 对象。
             serializer = CycleSerializer(cycle, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Cycle.DoesNotExist:
+            # 如果 Cycle 对象不存在，则返回错误。
             return Response(
                 {"error": "Cycle does not exist"}, status=status.HTTP_400_BAD_REQUEST
             )
         except Exception as e:
+            # 如果发生其他异常，则捕获并返回错误信息。
             capture_exception(e)
             return Response(
                 {"error": "Something went wrong please try again later"},
@@ -161,6 +182,15 @@ class CycleViewSet(BaseViewSet):
 
 
 class CycleIssueViewSet(BaseViewSet):
+    """
+    视图集用于处理与周期问题相关的请求。
+
+    Attributes:
+        serializer_class (Serializer): 序列化器类用于序列化和反序列化周期问题。
+        model (Model): 模型类表示周期问题。
+        permission_classes (list): 权限类列表，用于控制访问周期问题的权限。
+        filterset_fields (list): 过滤器字段列表，用于过滤周期问题的查询结果集。
+    """
     serializer_class = CycleIssueSerializer
     model = CycleIssue
 
@@ -174,12 +204,27 @@ class CycleIssueViewSet(BaseViewSet):
     ]
 
     def perform_create(self, serializer):
+        """
+        在创建周期问题时执行的操作。
+
+        Args:
+            serializer (Serializer): 序列化器实例，用于保存周期问题。
+
+        Returns:
+            None
+        """
         serializer.save(
             project_id=self.kwargs.get("project_id"),
             cycle_id=self.kwargs.get("cycle_id"),
         )
 
     def get_queryset(self):
+        """
+        获取周期问题的查询结果集。
+
+        Returns:
+            QuerySet: 周期问题的查询结果集。
+        """
         return self.filter_queryset(
             super()
             .get_queryset()
@@ -203,6 +248,18 @@ class CycleIssueViewSet(BaseViewSet):
 
     @method_decorator(gzip_page)
     def list(self, request, slug, project_id, cycle_id):
+        """
+        处理获取周期问题列表的请求。
+
+        Args:
+            request (Request): 请求对象。
+            slug (str): 工作空间的slug。
+            project_id (int): 项目的ID。
+            cycle_id (int): 周期的ID。
+
+        Returns:
+            Response: 包含周期问题列表的响应对象。
+        """
         try:
             order_by = request.GET.get("order_by", "created_at")
             group_by = request.GET.get("group_by", False)
@@ -248,6 +305,18 @@ class CycleIssueViewSet(BaseViewSet):
             )
 
     def create(self, request, slug, project_id, cycle_id):
+        """
+        处理创建周期问题的请求。
+
+        Args:
+            request (Request): 请求对象。
+            slug (str): 工作空间的slug。
+            project_id (int): 项目的ID。
+            cycle_id (int): 周期的ID。
+
+        Returns:
+            Response: 包含创建的周期问题列表的响应对象。
+        """
         try:
             issues = request.data.get("issues", [])
 
