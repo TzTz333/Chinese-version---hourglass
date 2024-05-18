@@ -71,7 +71,7 @@ export const AllBoards: React.FC<Props> = ({
           })}
           {!showEmptyGroups && (
             <div className="h-full w-96 flex-shrink-0 space-y-3 p-1">
-              <h2 className="text-lg font-semibold">Hidden groups</h2>
+              <h2 className="text-lg font-semibold">隐藏组</h2>
               <div className="space-y-3">
                 {Object.keys(groupedByIssues).map((singleGroup, index) => {
                   const currentState =

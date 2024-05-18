@@ -42,6 +42,23 @@ type Props = {
   userAuth: UserAuth;
 };
 
+type StateToChineseMap = { [key: string]: string };
+const stateNameToChinese: StateToChineseMap = {
+  Backlog: '待办事项',
+  Todo: "未开始",
+  "In Progress": "进行中",
+  Done: "已完成",
+  Cancelled: "已取消",
+};
+
+const stateNameToChinese2: StateToChineseMap = {
+  urgent: '紧急',
+  high: "较高",
+  medium: "中等",
+  low: "较低",
+  None: "None",
+};
+
 export const SingleList: React.FC<Props> = ({
   type,
   currentState,
@@ -82,10 +99,11 @@ export const SingleList: React.FC<Props> = ({
 
     switch (selectedGroup) {
       case "state":
-        title = addSpaceIfCamelCase(currentState?.name ?? "");
+        const stateName: string = addSpaceIfCamelCase(currentState?.name ?? "");
+        title = stateNameToChinese[stateName];
         break;
       case "labels":
-        title = issueLabels?.find((label) => label.id === groupTitle)?.name ?? "None";
+        title = issueLabels?.find((label) => label.id === groupTitle)?.name ?? "未定义标签";
         break;
       case "created_by":
         const member = members?.find((member) => member.member.id === groupTitle)?.member;
@@ -94,10 +112,21 @@ export const SingleList: React.FC<Props> = ({
             ? `${member.first_name} ${member.last_name}`
             : member?.email ?? "";
         break;
+      case "priority":
+        const stateName2: string = title;
+        title = stateNameToChinese2[stateName2];
+        break;
     }
+    // console.log("原始", title);
+
+
 
     return title;
   };
+  // const title = getGroupTitle();
+  // console.log(title);
+
+
 
   const getGroupIcon = () => {
     let icon;
@@ -134,9 +163,8 @@ export const SingleList: React.FC<Props> = ({
       {({ open }) => (
         <div className="rounded-[10px] border border-gray-300 bg-white">
           <div
-            className={`flex items-center justify-between bg-gray-100 px-5 py-3 ${
-              open ? "rounded-t-[10px]" : "rounded-[10px]"
-            }`}
+            className={`flex items-center justify-between bg-gray-100 px-5 py-3 ${open ? "rounded-t-[10px]" : "rounded-[10px]"
+              }`}
           >
             <Disclosure.Button>
               <div className="flex items-center gap-x-3">
@@ -148,7 +176,7 @@ export const SingleList: React.FC<Props> = ({
                     {getGroupTitle()}
                   </h2>
                 ) : (
-                  <h2 className="font-medium leading-5">All Issues</h2>
+                  <h2 className="font-medium leading-5">全部 Issues</h2>
                 )}
                 <span className="rounded-full bg-gray-200 py-0.5 px-3 text-sm text-black">
                   {groupedByIssues[groupTitle as keyof IIssue].length}
@@ -175,10 +203,10 @@ export const SingleList: React.FC<Props> = ({
                 optionsPosition="right"
                 noBorder
               >
-                <CustomMenu.MenuItem onClick={addIssueToState}>Create new</CustomMenu.MenuItem>
+                <CustomMenu.MenuItem onClick={addIssueToState}>新建</CustomMenu.MenuItem>
                 {openIssuesListModal && (
                   <CustomMenu.MenuItem onClick={openIssuesListModal}>
-                    Add an existing issue
+                    添加 issue
                   </CustomMenu.MenuItem>
                 )}
               </CustomMenu>
@@ -215,10 +243,10 @@ export const SingleList: React.FC<Props> = ({
                     />
                   ))
                 ) : (
-                  <p className="px-4 py-3 text-sm text-gray-500">No issues.</p>
+                  <p className="px-4 py-3 text-sm text-gray-500">没有 issues</p>
                 )
               ) : (
-                <div className="flex h-full w-full items-center justify-center">Loading...</div>
+                <div className="flex h-full w-full items-center justify-center">加载中...</div>
               )}
             </Disclosure.Panel>
           </Transition>

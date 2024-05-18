@@ -41,7 +41,7 @@ export const SubIssuesList: FC<Props> = ({ parentIssue, userAuth }) => {
     workspaceSlug && projectId && issueId ? SUB_ISSUES(issueId as string) : null,
     workspaceSlug && projectId && issueId
       ? () =>
-          issuesService.subIssues(workspaceSlug as string, projectId as string, issueId as string)
+        issuesService.subIssues(workspaceSlug as string, projectId as string, issueId as string)
       : null
   );
 
@@ -172,7 +172,7 @@ export const SubIssuesList: FC<Props> = ({ parentIssue, userAuth }) => {
               <div className="flex items-center justify-between">
                 <Disclosure.Button className="flex items-center gap-1 rounded px-2 py-1 text-xs font-medium hover:bg-gray-100">
                   <ChevronRightIcon className={`h-3 w-3 ${open ? "rotate-90" : ""}`} />
-                  Sub-issues <span className="ml-1 text-gray-600">{subIssues.length}</span>
+                  下一级issues <span className="ml-1 text-gray-600">{subIssues.length}</span>
                 </Disclosure.Button>
                 {open && !isNotAllowed ? (
                   <div className="flex items-center">
@@ -182,12 +182,12 @@ export const SubIssuesList: FC<Props> = ({ parentIssue, userAuth }) => {
                       onClick={handleCreateIssueModal}
                     >
                       <PlusIcon className="h-3 w-3" />
-                      Create new
+                      创建新的issue
                     </button>
 
                     <CustomMenu ellipsis>
                       <CustomMenu.MenuItem onClick={() => setSubIssuesListModal(true)}>
-                        Add an existing issue
+                        添加现有的issue
                       </CustomMenu.MenuItem>
                     </CustomMenu>
                   </div>
@@ -248,16 +248,16 @@ export const SubIssuesList: FC<Props> = ({ parentIssue, userAuth }) => {
             label={
               <>
                 <PlusIcon className="h-3 w-3" />
-                Add sub-issue
+                添加子级issue
               </>
             }
             optionsPosition="left"
             noBorder
             noChevron
           >
-            <CustomMenu.MenuItem onClick={handleCreateIssueModal}>Create new</CustomMenu.MenuItem>
+            <CustomMenu.MenuItem onClick={handleCreateIssueModal}>创建一个新的</CustomMenu.MenuItem>
             <CustomMenu.MenuItem onClick={() => setSubIssuesListModal(true)}>
-              Add an existing issue
+              添加当前issue
             </CustomMenu.MenuItem>
           </CustomMenu>
         )

@@ -118,17 +118,16 @@ export const DeleteWorkspaceModal: React.FC<Props> = ({ isOpen, data, onClose })
 
                   <span>
                     <p className="text-sm leading-7 text-gray-500">
-                      Are you sure you want to delete workspace{" "}
-                      <span className="break-all font-semibold">{data?.name}</span>? All of the data
-                      related to the workspace will be permanently removed. This action cannot be
-                      undone.
+                      是否确实要删除工作区{" "}
+                      <span className="break-all font-semibold">{data?.name}</span> ？与工作区相关的所有数据都将被永久删除。
+                      此操作不能撤消。
                     </p>
                   </span>
 
                   <div className="text-gray-600">
                     <p className="break-all text-sm ">
-                      Enter the workspace name{" "}
-                      <span className="font-medium">{selectedWorkspace?.name}</span> to continue:
+                      输入工作区名字{" "}
+                      <span className="font-medium">{selectedWorkspace?.name}</span> 以继续操作：
                     </p>
                     <Input
                       type="text"

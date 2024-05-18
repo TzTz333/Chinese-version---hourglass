@@ -86,8 +86,8 @@ const ProjectsPage: NextPage = () => {
           {projects.length === 0 ? (
             <EmptyState
               type="project"
-              title="Create New Project"
-              description="Projects are a collection of issues. They can be used to represent the development work for a product, project, or service."
+              title="创建一个新项目"
+              description="项目是问题的集合。它们可用于表示产品、项目或服务的开发工作。"
               imgURL={emptyProject}
             />
           ) : (

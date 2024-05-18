@@ -26,6 +26,15 @@ type Props = {
   height?: "sm" | "md" | "rg" | "lg";
 };
 
+//翻译函数
+const stateGroupTranslation: { [key: string]: string } = {
+  "backlog": "待办",
+  "unstarted": "未开始",
+  "started": "已开始",
+  "completed": "已完成",
+  "cancelled": "已取消",
+};
+
 export const SelectFilters: React.FC<Props> = ({
   filters,
   onSelect,
@@ -59,41 +68,41 @@ export const SelectFilters: React.FC<Props> = ({
 
   return (
     <MultiLevelDropdown
-      label="Filters"
+      label="筛选"
       onSelect={onSelect}
       direction={direction}
       height={height}
       options={[
         {
           id: "priority",
-          label: "Priority",
+          label: "优先级",
           value: PRIORITIES,
           children: [
-            ...PRIORITIES.map((priority) => ({
-              id: priority ?? "none",
+            ...Object.entries(PRIORITIES).map(([priorityKey, priorityValue]) => ({
+              id: priorityKey ?? "none",
               label: (
                 <div className="flex items-center gap-2">
-                  {getPriorityIcon(priority)} {priority ?? "None"}
+                  {getPriorityIcon(priorityKey)} {priorityValue ?? "None"}
                 </div>
               ),
               value: {
                 key: "priority",
-                value: priority,
+                value: priorityKey,
               },
-              selected: filters?.priority?.includes(priority ?? "none"),
+              selected: filters?.priority?.includes(priorityKey ?? "none"),
             })),
           ],
         },
         {
           id: "state",
-          label: "State",
+          label: "状态",
           value: statesList,
           children: [
             ...statesList.map((state) => ({
               id: state.id,
               label: (
                 <div className="flex items-center gap-2">
-                  {getStateGroupIcon(state.group, "16", "16", state.color)} {state.name}
+                  {getStateGroupIcon(state.group, "16", "16", state.color)}  {stateGroupTranslation[state.group] || state.name}
                 </div>
               ),
               value: {
@@ -106,7 +115,7 @@ export const SelectFilters: React.FC<Props> = ({
         },
         {
           id: "assignees",
-          label: "Assignees",
+          label: "负责人",
           value: members,
           children: [
             ...(members?.map((member) => ({
@@ -129,7 +138,7 @@ export const SelectFilters: React.FC<Props> = ({
         },
         {
           id: "created_by",
-          label: "Created By",
+          label: "创建人",
           value: members,
           children: [
             ...(members?.map((member) => ({
@@ -152,7 +161,7 @@ export const SelectFilters: React.FC<Props> = ({
         },
         {
           id: "labels",
-          label: "Labels",
+          label: "标签",
           value: issueLabels,
           children: [
             ...(issueLabels?.map((label) => ({

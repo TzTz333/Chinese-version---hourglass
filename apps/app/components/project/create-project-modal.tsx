@@ -197,16 +197,16 @@ export const CreateProjectModal: React.FC<Props> = (props) => {
                   </div>
                   <div className="absolute bottom-0 left-0 flex w-full justify-between px-6 py-5">
                     <div className="absolute left-0 bottom-0 h-16 w-full bg-gradient-to-t from-black opacity-60" />
-                    <h3 className="z-[1] text-xl text-white">Create Project</h3>
-                    <div>
+                    <h3 className="z-[1] text-xl text-white">创建项目</h3>
+                    {/* <div>
                       <ImagePickerPopover
-                        label="Change Cover"
+                        label="更换封面"
                         onChange={(image) => {
                           setValue("cover_image", image);
                         }}
                         value={watch("cover_image")}
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -227,16 +227,16 @@ export const CreateProjectModal: React.FC<Props> = (props) => {
                           id="name"
                           name="name"
                           type="name"
-                          placeholder="Enter name"
+                          placeholder="输入名称"
                           error={errors.name}
                           register={register}
                           className="text-xl"
                           mode="transparent"
                           validations={{
-                            required: "Name is required",
+                            required: "名称是必填项",
                             maxLength: {
                               value: 255,
-                              message: "Name should be less than 255 characters",
+                              message: "名称不得少于25字",
                             },
                           }}
                         />
@@ -250,12 +250,12 @@ export const CreateProjectModal: React.FC<Props> = (props) => {
                         type="text"
                         mode="transparent"
                         className="text-sm"
-                        placeholder="Enter Project Identifier"
+                        placeholder="输入项目标识符"
                         error={errors.identifier}
                         register={register}
                         onChange={() => setIsChangeIdentifierRequired(false)}
                         validations={{
-                          required: "Identifier is required",
+                          required: "项目标识符为必填项",
                           validate: (value) =>
                             /^[A-Z]+$/.test(value) || "Identifier must be uppercase text.",
                           minLength: {
@@ -276,7 +276,7 @@ export const CreateProjectModal: React.FC<Props> = (props) => {
                         name="description"
                         mode="transparent"
                         className="text-sm"
-                        placeholder="Enter description"
+                        placeholder="输入详细描述"
                         error={errors.description}
                         register={register}
                       />
@@ -310,9 +310,9 @@ export const CreateProjectModal: React.FC<Props> = (props) => {
                   </div>
 
                   <div className="mt-5 flex justify-end gap-2 border-t-2 px-4 py-3">
-                    <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
+                    <SecondaryButton onClick={handleClose}>取消</SecondaryButton>
                     <PrimaryButton type="submit" size="sm" loading={isSubmitting}>
-                      {isSubmitting ? "Adding project..." : "Add Project"}
+                      {isSubmitting ? "添加项目中..." : "添加项目"}
                     </PrimaryButton>
                   </div>
                 </form>

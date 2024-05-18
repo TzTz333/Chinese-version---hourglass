@@ -89,8 +89,8 @@ export const SingleListIssue: React.FC<Props> = ({
       if (cycleId)
         mutate<
           | {
-              [key: string]: IIssue[];
-            }
+            [key: string]: IIssue[];
+          }
           | IIssue[]
         >(
           CYCLE_ISSUES_WITH_PARAMS(cycleId as string, params),
@@ -102,8 +102,8 @@ export const SingleListIssue: React.FC<Props> = ({
       if (moduleId)
         mutate<
           | {
-              [key: string]: IIssue[];
-            }
+            [key: string]: IIssue[];
+          }
           | IIssue[]
         >(
           MODULE_ISSUES_WITH_PARAMS(moduleId as string, params),
@@ -114,8 +114,8 @@ export const SingleListIssue: React.FC<Props> = ({
 
       mutate<
         | {
-            [key: string]: IIssue[];
-          }
+          [key: string]: IIssue[];
+        }
         | IIssue[]
       >(
         PROJECT_ISSUES_LIST_WITH_PARAMS(projectId as string, params),
@@ -166,18 +166,18 @@ export const SingleListIssue: React.FC<Props> = ({
         {!isNotAllowed && (
           <>
             <ContextMenu.Item Icon={PencilIcon} onClick={editIssue}>
-              Edit issue
+              编辑issue
             </ContextMenu.Item>
             <ContextMenu.Item Icon={ClipboardDocumentCheckIcon} onClick={makeIssueCopy}>
-              Make a copy...
+              复制
             </ContextMenu.Item>
             <ContextMenu.Item Icon={TrashIcon} onClick={() => handleDeleteIssue(issue)}>
-              Delete issue
+              删除issue
             </ContextMenu.Item>
           </>
         )}
         <ContextMenu.Item Icon={LinkIcon} onClick={handleCopyText}>
-          Copy issue link
+          复制issue链接
         </ContextMenu.Item>
         <a
           href={`/${workspaceSlug}/projects/${projectId}/issues/${issue.id}`}
@@ -185,7 +185,7 @@ export const SingleListIssue: React.FC<Props> = ({
           rel="noreferrer noopener"
         >
           <ContextMenu.Item Icon={ArrowTopRightOnSquareIcon}>
-            Open issue in new tab
+            在新页面打开issue
           </ContextMenu.Item>
         </a>
       </ContextMenu>
@@ -242,7 +242,7 @@ export const SingleListIssue: React.FC<Props> = ({
             )}
             {properties.sub_issue_count && (
               <div className="flex  items-center gap-1 rounded-md border px-3 py-1.5 text-xs shadow-sm">
-                {issue.sub_issues_count} {issue.sub_issues_count === 1 ? "sub-issue" : "sub-issues"}
+                {issue.sub_issues_count} {issue.sub_issues_count === 1 ? "子级issue" : "子级issue"}
               </div>
             )}
             {properties.labels && issue.label_details.length > 0 ? (
@@ -278,27 +278,27 @@ export const SingleListIssue: React.FC<Props> = ({
                 <CustomMenu.MenuItem onClick={editIssue}>
                   <div className="flex items-center justify-start gap-2">
                     <PencilIcon className="h-4 w-4" />
-                    <span>Edit issue</span>
+                    <span>编辑issue</span>
                   </div>
                 </CustomMenu.MenuItem>
                 {type !== "issue" && removeIssue && (
                   <CustomMenu.MenuItem onClick={removeIssue}>
                     <div className="flex items-center justify-start gap-2">
                       <XMarkIcon className="h-4 w-4" />
-                      <span>Remove from {type}</span>
+                      <span>从{type}中移除</span>
                     </div>
                   </CustomMenu.MenuItem>
                 )}
                 <CustomMenu.MenuItem onClick={() => handleDeleteIssue(issue)}>
                   <div className="flex items-center justify-start gap-2">
                     <TrashIcon className="h-4 w-4" />
-                    <span>Delete issue</span>
+                    <span>删除issue</span>
                   </div>
                 </CustomMenu.MenuItem>
                 <CustomMenu.MenuItem onClick={handleCopyText}>
                   <div className="flex items-center justify-start gap-2">
                     <LinkIcon className="h-4 w-4" />
-                    <span>Copy issue link</span>
+                    <span>复制issue链接</span>
                   </div>
                 </CustomMenu.MenuItem>
               </CustomMenu>

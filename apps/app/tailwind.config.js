@@ -7,6 +7,7 @@ module.exports = {
         "hover-gray": "#f5f5f5",
         primary: "#f9fafb", // gray-50
         secondary: "white",
+        customPurple: '#7D4CDB', // 添加自定义颜色
       },
       keyframes: {
         leftToaster: {

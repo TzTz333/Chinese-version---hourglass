@@ -1,4 +1,4 @@
-export const NETWORK_CHOICES = { "0": "Secret", "2": "Public" };
+export const NETWORK_CHOICES = { "0": "私人的", "2": "公开的" };
 
 export const GROUP_CHOICES = {
   backlog: "待办",
@@ -8,7 +8,14 @@ export const GROUP_CHOICES = {
   cancelled: "已取消",
 };
 
-export const PRIORITIES = ["紧急", "高", "中", "低", null];
+
+export const PRIORITIES = {
+  urgent: "紧急",
+  high: "高级",
+  medium: "中级",
+  low: "低级",
+  null: "None"
+}
 
 export const MONTHS = [
   "一月",

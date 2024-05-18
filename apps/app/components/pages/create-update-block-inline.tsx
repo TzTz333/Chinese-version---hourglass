@@ -164,7 +164,7 @@ export const CreateUpdateBlockInline: React.FC<Props> = ({
         <Input
           id="name"
           name="name"
-          placeholder="Title"
+          placeholder="标题"
           register={register}
           className="min-h-10 block w-full resize-none overflow-hidden border-none bg-transparent py-1 text-base ring-0 -ml-2 focus:ring-gray-200"
           role="textbox"
@@ -184,7 +184,7 @@ export const CreateUpdateBlockInline: React.FC<Props> = ({
                 }
                 onJSONChange={(jsonValue) => setValue("description", jsonValue)}
                 onHTMLChange={(htmlValue) => setValue("description_html", htmlValue)}
-                placeholder="Description"
+                placeholder="描述内容"
                 customClassName="text-sm"
                 noBorder
                 borderOnFocus={false}
@@ -193,15 +193,15 @@ export const CreateUpdateBlockInline: React.FC<Props> = ({
           />
         </div>
         <div className="flex justify-end items-center gap-2">
-          <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
+          <SecondaryButton onClick={handleClose}>取消</SecondaryButton>
           <PrimaryButton type="submit" disabled={watch("name") === ""} loading={isSubmitting}>
             {data
               ? isSubmitting
-                ? "Updating..."
-                : "Update block"
+                ? "更新中..."
+                : "更新板块"
               : isSubmitting
-              ? "Adding..."
-              : "Add block"}
+                ? "添加中..."
+                : "添加板块"}
           </PrimaryButton>
         </div>
       </form>

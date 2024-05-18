@@ -34,8 +34,8 @@ const MyIssuesPage: NextPage = () => {
     workspaceSlug ? (workspaceSlug as string) : undefined,
     undefined
   );
-  const translatePropertyKey = (key) => {
-    const translations = {
+  const translatePropertyKey = (key: string) => {
+    const translations: { [index: string]: string } = {
       "assignee": "责任人",
       "due_date": "截止日期",
       "key": "ID",
@@ -89,8 +89,8 @@ const MyIssuesPage: NextPage = () => {
                                   key={key}
                                   type="button"
                                   className={`rounded border border-theme px-2 py-1 text-xs capitalize ${properties[key as keyof Properties]
-                                      ? "border-theme bg-theme text-white"
-                                      : ""
+                                    ? "border-theme bg-theme text-white"
+                                    : ""
                                     }`}
                                   onClick={() => setProperties(key as keyof Properties)}
                                 >

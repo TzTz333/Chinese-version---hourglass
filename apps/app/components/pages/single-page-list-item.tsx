@@ -55,9 +55,8 @@ export const SinglePageListItem: React.FC<TSingleStatProps> = ({
                       key={label.id}
                       className="group flex items-center gap-1 rounded-2xl border px-2 py-0.5 text-xs"
                       style={{
-                        backgroundColor: `${
-                          label?.color && label.color !== "" ? label.color : "#000000"
-                        }20`,
+                        backgroundColor: `${label?.color && label.color !== "" ? label.color : "#000000"
+                          }20`,
                       }}
                     >
                       <span
@@ -103,7 +102,7 @@ export const SinglePageListItem: React.FC<TSingleStatProps> = ({
                       <StarIcon className="h-4 w-4 " color="#858e96" />
                     </button>
                   )}
-                  <Tooltip
+                  {/* <Tooltip
                     tooltipContent={`${
                       page.access
                         ? "This page is only visible to you."
@@ -125,7 +124,7 @@ export const SinglePageListItem: React.FC<TSingleStatProps> = ({
                         <LockOpenIcon className="h-4 w-4" color="#858e96" />
                       )}
                     </button>
-                  </Tooltip>
+                  </Tooltip> */}
                   <CustomMenu width="auto" verticalEllipsis>
                     <CustomMenu.MenuItem
                       onClick={(e: any) => {
@@ -136,7 +135,7 @@ export const SinglePageListItem: React.FC<TSingleStatProps> = ({
                     >
                       <span className="flex items-center justify-start gap-2">
                         <PencilIcon className="h-3.5 w-3.5" />
-                        <span>Edit Page</span>
+                        <span>编辑文档</span>
                       </span>
                     </CustomMenu.MenuItem>
                     <CustomMenu.MenuItem
@@ -148,7 +147,7 @@ export const SinglePageListItem: React.FC<TSingleStatProps> = ({
                     >
                       <span className="flex items-center justify-start gap-2">
                         <TrashIcon className="h-3.5 w-3.5" />
-                        <span>Delete Page</span>
+                        <span>删除文档</span>
                       </span>
                     </CustomMenu.MenuItem>
                   </CustomMenu>

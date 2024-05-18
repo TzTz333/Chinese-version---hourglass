@@ -143,7 +143,7 @@ export const ProjectSidebarList: FC = () => {
         data={projectToDelete}
       />
       <div className="mt-2.5 h-full overflow-y-auto border-t bg-white pt-2.5">
-        {favoriteProjects && favoriteProjects.length > 0 && (
+        {/* {favoriteProjects && favoriteProjects.length > 0 && (
           <div className="mt-3 flex flex-col space-y-2 px-3">
             {!sidebarCollapse && <h5 className="text-sm font-semibold text-gray-400">Favorites</h5>}
             {favoriteProjects.map((favoriteProject) => {
@@ -161,26 +161,38 @@ export const ProjectSidebarList: FC = () => {
               );
             })}
           </div>
-        )}
+        )} */}
         <div className="flex flex-col space-y-2 p-3">
-          {!sidebarCollapse && <h5 className="text-sm font-semibold text-gray-400">  项  目  </h5>}
+          {!sidebarCollapse && <h5 className="text-sm font-semibold text-gray-400">  项目列表  </h5>}
           {projects ? (
             <>
               {normalProjects.length > 0 ? (
-                normalProjects.map((project) => (
-                  <SingleSidebarProject
-                    key={project.id}
-                    project={project}
-                    sidebarCollapse={sidebarCollapse}
-                    handleDeleteProject={() => handleDeleteProject(project)}
-                    handleCopyText={() => handleCopyText(project.id)}
-                    handleAddToFavorites={() => handleAddToFavorites(project)}
-                  />
-                ))
+                <>
+                  {normalProjects.map((project) => (
+                    <SingleSidebarProject
+                      key={project.id}
+                      project={project}
+                      sidebarCollapse={sidebarCollapse}
+                      handleDeleteProject={() => handleDeleteProject(project)}
+                      handleCopyText={() => handleCopyText(project.id)}
+                      handleAddToFavorites={() => handleAddToFavorites(project)}
+                    />
+                  ))}
+                  <div className="mt-4 text-center">
+                    <button
+                      type="button"
+                      className="group flex w-full items-center justify-center gap-2 rounded-md bg-gray-200 p-2 text-xs text-gray-900"
+                      onClick={() => setCreateProjectModal(true)}
+                    >
+                      <PlusIcon className="h-4 w-4" />
+                      {!sidebarCollapse && "创建新项目"}
+                    </button>
+                  </div>
+                </>
               ) : (
                 <div className="space-y-3 text-center">
                   {!sidebarCollapse && (
-                    <h4 className="text-sm text-gray-700">You don{"'"}t have any project yet</h4>
+                    <h4 className="text-sm text-gray-700">你还没有创建任何项目</h4>
                   )}
                   <button
                     type="button"
@@ -188,7 +200,7 @@ export const ProjectSidebarList: FC = () => {
                     onClick={() => setCreateProjectModal(true)}
                   >
                     <PlusIcon className="h-4 w-4" />
-                    {!sidebarCollapse && "Create Project"}
+                    {!sidebarCollapse && "创建项目"}
                   </button>
                 </div>
               )}

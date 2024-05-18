@@ -62,24 +62,24 @@ export const PageForm: React.FC<Props> = ({ handleFormSubmit, handleClose, statu
     <form onSubmit={handleSubmit(handleCreateUpdatePage)}>
       <div className="space-y-5">
         <h3 className="text-lg font-medium leading-6 text-gray-900">
-          {status ? "Update" : "Create"} Page
+          {status ? "更新" : "创建"} 文档
         </h3>
         <div className="space-y-3">
           <div>
             <Input
               id="name"
-              label="Name"
+              label="名称"
               name="name"
               type="name"
-              placeholder="Enter name"
+              placeholder="输入名称"
               autoComplete="off"
               error={errors.name}
               register={register}
               validations={{
-                required: "Name is required",
+                required: "名称是必填项",
                 maxLength: {
                   value: 255,
-                  message: "Name should be less than 255 characters",
+                  message: "名称不得超过25个字",
                 },
               }}
             />
@@ -101,15 +101,15 @@ export const PageForm: React.FC<Props> = ({ handleFormSubmit, handleClose, statu
         </div>
       </div>
       <div className="mt-5 flex justify-end gap-2">
-        <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
+        <SecondaryButton onClick={handleClose}>取消</SecondaryButton>
         <PrimaryButton type="submit" loading={isSubmitting}>
           {status
             ? isSubmitting
-              ? "Updating Page..."
-              : "Update Page"
+              ? "更新文档中..."
+              : "更新文档"
             : isSubmitting
-            ? "Creating Page..."
-            : "Create Page"}
+              ? "创建文档中..."
+              : "创建文档"}
         </PrimaryButton>
       </div>
     </form>

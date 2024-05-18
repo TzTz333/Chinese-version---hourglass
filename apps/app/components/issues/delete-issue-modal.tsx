@@ -112,23 +112,22 @@ export const DeleteIssueModal: React.FC<Props> = ({ isOpen, handleClose, data })
                       />
                     </span>
                     <span className="flex items-center justify-start">
-                      <h3 className="text-xl font-medium 2xl:text-2xl">Delete Issue</h3>
+                      <h3 className="text-xl font-medium 2xl:text-2xl">删除Issue</h3>
                     </span>
                   </div>
                   <span>
                     <p className="break-all text-sm leading-7 text-gray-500">
-                      Are you sure you want to delete issue{" "}
+                      你确定要删除 issue{" "}
                       <span className="break-all font-semibold">
                         {data?.project_detail.identifier}-{data?.sequence_id}
                       </span>
-                      {""}? All of the data related to the issue will be permanently removed. This
-                      action cannot be undone.
+                      {""}? 与该问题相关的所有数据都将被永久删除，操作无法撤消！
                     </p>
                   </span>
                   <div className="flex justify-end gap-2">
-                    <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
+                    <SecondaryButton onClick={onClose}>取消</SecondaryButton>
                     <DangerButton onClick={handleDeletion} loading={isDeleteLoading}>
-                      {isDeleteLoading ? "Deleting..." : "Delete Issue"}
+                      {isDeleteLoading ? "删除中..." : "删除Issue"}
                     </DangerButton>
                   </div>
                 </div>

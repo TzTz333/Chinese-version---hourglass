@@ -154,8 +154,8 @@ const GeneralSettings: NextPage<UserAuth> = ({ isMember, isOwner, isViewer, isGu
         <div className="space-y-8 sm:space-y-12">
           <div className="grid grid-cols-12 items-start gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Icon & Name</h4>
-              <p className="text-gray-500">Select an icon and a name for your project.</p>
+              <h4 className="text-xl font-semibold">图标 & 项目名</h4>
+              <p className="text-gray-500">为你的项目命名并选择一个图标。</p>
             </div>
             <div className="col-span-12 flex gap-2 sm:col-span-6">
               {projectDetails ? (
@@ -195,8 +195,8 @@ const GeneralSettings: NextPage<UserAuth> = ({ isMember, isOwner, isViewer, isGu
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Description</h4>
-              <p className="text-gray-500">Give a description to your project.</p>
+              <h4 className="text-xl font-semibold">项目介绍</h4>
+              <p className="text-gray-500">为你的项目添加一些介绍。</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               {projectDetails ? (
@@ -218,9 +218,9 @@ const GeneralSettings: NextPage<UserAuth> = ({ isMember, isOwner, isViewer, isGu
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Identifier</h4>
+              <h4 className="text-xl font-semibold">标识符</h4>
               <p className="text-gray-500">
-                Create a 1-6 characters{"'"} identifier for the project.
+                为项目创建一个 1-6 个字符的标识符。
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -252,8 +252,8 @@ const GeneralSettings: NextPage<UserAuth> = ({ isMember, isOwner, isViewer, isGu
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Network</h4>
-              <p className="text-gray-500">Select privacy type for the project.</p>
+              <h4 className="text-xl font-semibold">项目类型</h4>
+              <p className="text-gray-500">选择项目类型是私人的or公开的。</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               {projectDetails ? (
@@ -286,43 +286,38 @@ const GeneralSettings: NextPage<UserAuth> = ({ isMember, isOwner, isViewer, isGu
               )}
             </div>
           </div>
-          <div className="sm:text-right">
-            {projectDetails ? (
-              <SecondaryButton type="submit" loading={isSubmitting}>
-                {isSubmitting ? "Updating Project..." : "Update Project"}
-              </SecondaryButton>
-            ) : (
-              <Loader className="mt-2 w-full">
-                <Loader.Item height="34px" width="100px" light />
-              </Loader>
-            )}
-          </div>
-          <div className="grid grid-cols-12 gap-4 sm:gap-16">
-            <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Danger Zone</h4>
-              <p className="text-gray-500">
-                The danger zone of the project delete page is a critical area that requires careful
-                consideration and attention. When deleting a project, all of the data and resources
-                within that project will be permanently removed and cannot be recovered.
-              </p>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              {projectDetails ? (
-                <div>
-                  <OutlineButton
-                    theme="danger"
-                    onClick={() => setSelectedProject(projectDetails.id ?? null)}
-                  >
-                    Delete Project
-                  </OutlineButton>
+          <div>
+            <div className="flex justify-end gap-2 sm:gap-4">
+              <div className="flex gap-2 sm:gap-4">
+                {projectDetails ? (
+                  <div className="col-span-12 sm:col-span-6">
+                    <OutlineButton
+                      theme="danger"
+                      onClick={() => setSelectedProject(projectDetails.id ?? null)}
+                    >
+                      删除项目
+                    </OutlineButton>
+                  </div>
+                ) : (
+                  <Loader className="mt-2 w-full">
+                    <Loader.Item height="46px" width="100px" light />
+                  </Loader>
+                )}
+                <div className="col-span-12 sm:col-span-6">
+                  {projectDetails ? (
+                    <SecondaryButton type="submit" loading={isSubmitting}>
+                      {isSubmitting ? "更新项目中..." : "更新项目"}
+                    </SecondaryButton>
+                  ) : (
+                    <Loader className="mt-2 w-full">
+                      <Loader.Item height="34px" width="100px" light />
+                    </Loader>
+                  )}
                 </div>
-              ) : (
-                <Loader className="mt-2 w-full">
-                  <Loader.Item height="46px" width="100px" light />
-                </Loader>
-              )}
+              </div>
             </div>
           </div>
+
         </div>
       </form>
     </AppLayout>

@@ -56,21 +56,21 @@ const useMyIssuesProperties = (issues?: IIssue[]) => {
   } = {
     ...(groupByProperty === "state_detail.name"
       ? Object.fromEntries(
-          states
-            ?.sort((a, b) => a.sequence - b.sequence)
-            ?.map((state) => [
-              state.name,
-              issues?.filter((issue) => issue.state === state.name) ?? [],
-            ]) ?? []
-        )
+        states
+          ?.sort((a, b) => a.sequence - b.sequence)
+          ?.map((state) => [
+            state.name,
+            issues?.filter((issue) => issue.state === state.name) ?? [],
+          ]) ?? []
+      )
       : groupByProperty === "priority"
-      ? Object.fromEntries(
-          PRIORITIES.map((priority) => [
-            priority,
-            issues?.filter((issue) => issue.priority === priority) ?? [],
+        ? Object.fromEntries(
+          Object.entries(PRIORITIES).map(([priorityKey, priorityValue]) => [
+            priorityValue,
+            issues?.filter((issue) => issue.priority === priorityKey) ?? [],
           ])
         )
-      : {}),
+        : {}),
     ...groupBy(issues ?? [], groupByProperty ?? ""),
   };
 

@@ -442,11 +442,9 @@ export const IssuesView: React.FC<Props> = ({
         <StrictModeDroppable droppableId="trashBox">
           {(provided, snapshot) => (
             <div
-              className={`${
-                trashBox ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-              } fixed top-9 right-9 z-20 flex h-28 w-96 flex-col items-center justify-center gap-2 rounded border-2 border-red-500 bg-red-100 p-3 text-xs font-medium italic text-red-500 ${
-                snapshot.isDraggingOver ? "bg-red-500 text-white" : ""
-              } duration-200`}
+              className={`${trashBox ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+                } fixed top-9 right-9 z-20 flex h-28 w-96 flex-col items-center justify-center gap-2 rounded border-2 border-red-500 bg-red-100 p-3 text-xs font-medium italic text-red-500 ${snapshot.isDraggingOver ? "bg-red-500 text-white" : ""
+                } duration-200`}
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -473,8 +471,8 @@ export const IssuesView: React.FC<Props> = ({
                     type === "cycle"
                       ? removeIssueFromCycle
                       : type === "module"
-                      ? removeIssueFromModule
-                      : null
+                        ? removeIssueFromModule
+                        : null
                   }
                   isCompleted={isCompleted}
                   userAuth={userAuth}
@@ -493,8 +491,8 @@ export const IssuesView: React.FC<Props> = ({
                     type === "cycle"
                       ? removeIssueFromCycle
                       : type === "module"
-                      ? removeIssueFromModule
-                      : null
+                        ? removeIssueFromModule
+                        : null
                   }
                   isCompleted={isCompleted}
                   userAuth={userAuth}

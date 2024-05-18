@@ -198,7 +198,7 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
             </Link>
             <div className="flex h-full items-end justify-between">
               <Tooltip
-                tooltipContent={`Created at ${renderShortNumericDateFormat(project.created_at)}`}
+                tooltipContent={`创建于 ${renderShortNumericDateFormat(project.created_at)}`}
                 position="bottom"
                 theme="dark"
               >
@@ -216,37 +216,16 @@ export const SingleProjectCard: React.FC<ProjectCardProps> = ({
                       </a>
                     </Link>
                   )}
-                  <CustomMenu width="auto" verticalEllipsis>
-                    {isOwner && (
+                  {isOwner && (
+                    <CustomMenu width="auto" verticalEllipsis>
                       <CustomMenu.MenuItem onClick={() => setDeleteProject(project.id)}>
                         <span className="flex items-center justify-start gap-2">
                           <TrashIcon className="h-4 w-4" />
                           <span>删除项目</span>
                         </span>
                       </CustomMenu.MenuItem>
-                    )}
-                    {project.is_favorite ? (
-                      <CustomMenu.MenuItem onClick={handleRemoveFromFavorites}>
-                        <span className="flex items-center justify-start gap-2">
-                          <StarIcon className="h-4 w-4" />
-                          <span>从收藏夹中删除</span>
-                        </span>
-                      </CustomMenu.MenuItem>
-                    ) : (
-                      <CustomMenu.MenuItem onClick={handleAddToFavorites}>
-                        <span className="flex items-center justify-start gap-2">
-                          <StarIcon className="h-4 w-4" />
-                          <span>添加到收藏夹</span>
-                        </span>
-                      </CustomMenu.MenuItem>
-                    )}
-                    <CustomMenu.MenuItem onClick={handleCopyText}>
-                      <span className="flex items-center justify-start gap-2">
-                        <LinkIcon className="h-4 w-4" />
-                        <span>复制项目链接</span>
-                      </span>
-                    </CustomMenu.MenuItem>
-                  </CustomMenu>
+                    </CustomMenu>
+                  )}
                 </div>
               ) : null}
             </div>

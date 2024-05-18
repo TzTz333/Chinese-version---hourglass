@@ -28,12 +28,12 @@ export const IssuePrioritySelect: React.FC<Props> = ({ value, onChange }) => (
     onChange={onChange}
     noChevron
   >
-    {PRIORITIES.map((priority) => (
-      <CustomSelect.Option key={priority} value={priority}>
+    {Object.entries(PRIORITIES).map(([priorityKey, priorityValue]) => (
+      <CustomSelect.Option key={priorityKey} value={priorityKey}>
         <div className="flex w-full justify-between gap-2 rounded">
           <div className="flex items-center justify-start gap-2">
-            <span>{getPriorityIcon(priority)}</span>
-            <span className="capitalize">{priority ?? "None"}</span>
+            <span>{getPriorityIcon(priorityKey)}</span>
+            <span className="capitalize">{priorityValue ?? "None"}</span>
           </div>
         </div>
       </CustomSelect.Option>

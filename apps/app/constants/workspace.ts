@@ -19,32 +19,32 @@ export const COMPANY_SIZE = [
 ];
 
 export const USER_ROLES = [
-  { value: "Founder or leadership team", label: "创始人或团队领导" },
-  { value: "Product manager", label: "产品经理" },
-  { value: "Designer", label: "设计师" },
+  { value: "Founder or leadership team", label: "团队领导" },
+  // { value: "Product manager", label: "产品经理" },
+  // { value: "Designer", label: "设计师" },
   { value: "Software developer", label: "软件开发者" },
   { value: "Freelancer", label: "自由工作者" },
-  { value: "Other", label: "其他" },
+  // { value: "Other", label: "其他" },
 ];
 
 export const ONBOARDING_CARDS = {
   welcome: {
     imgURL: Welcome,
     step: "1/5",
-    title: "欢迎来到",
+    title: "欢迎您的使用",
     description: "Plane 帮助您计划您的问题、周期和产品模块，以便更快地发布。",
   },
   issue: {
     imgURL: Issue,
     step: "2/5",
-    title: "Plan with Issues",
+    title: "Issues板块",
     description:
       "issue 是 Plane 的构建块。Plane 中的大多数概念都与问题及其属性相关联。",
   },
   cycle: {
     imgURL: Cycle,
     step: "3/5",
-    title: "Move with Cycles",
+    title: "Cycles板块",
     description:
       "Cycles 帮助您和您的团队更快地进步，类似于敏捷开发中常用的冲刺。",
   },

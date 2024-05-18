@@ -46,16 +46,16 @@ const navigation = (workspaceSlug: string, projectId: string) => [
     href: `/${workspaceSlug}/projects/${projectId}/cycles`,
     icon: ContrastIcon,
   },
-  {
-    name: "Modules",
-    href: `/${workspaceSlug}/projects/${projectId}/modules`,
-    icon: PeopleGroupIcon,
-  },
-  {
-    name: "Views",
-    href: `/${workspaceSlug}/projects/${projectId}/views`,
-    icon: ViewListIcon,
-  },
+  // {
+  //   name: "Modules",
+  //   href: `/${workspaceSlug}/projects/${projectId}/modules`,
+  //   icon: PeopleGroupIcon,
+  // },
+  // {
+  //   name: "Views",
+  //   href: `/${workspaceSlug}/projects/${projectId}/views`,
+  //   icon: ViewListIcon,
+  // },
   {
     name: "Pages",
     href: `/${workspaceSlug}/projects/${projectId}/pages`,
@@ -86,9 +86,8 @@ export const SingleSidebarProject: React.FC<Props> = ({
           <div className="flex items-center gap-x-1">
             <Disclosure.Button
               as="div"
-              className={`flex w-full cursor-pointer select-none items-center rounded-md py-2 text-left text-sm font-medium ${
-                sidebarCollapse ? "justify-center" : "justify-between"
-              }`}
+              className={`flex w-full cursor-pointer select-none items-center rounded-md py-2 text-left text-sm font-medium ${sidebarCollapse ? "justify-center" : "justify-between"
+                }`}
             >
               <div className="flex items-center gap-x-2">
                 {project.icon ? (
@@ -119,10 +118,10 @@ export const SingleSidebarProject: React.FC<Props> = ({
                 <CustomMenu.MenuItem onClick={handleDeleteProject}>
                   <span className="flex items-center justify-start gap-2 ">
                     <TrashIcon className="h-4 w-4" />
-                    <span>Delete project</span>
+                    <span>删除项目</span>
                   </span>
                 </CustomMenu.MenuItem>
-                {handleAddToFavorites && (
+                {/* {handleAddToFavorites && (
                   <CustomMenu.MenuItem onClick={handleAddToFavorites}>
                     <span className="flex items-center justify-start gap-2">
                       <StarIcon className="h-4 w-4" />
@@ -137,13 +136,13 @@ export const SingleSidebarProject: React.FC<Props> = ({
                       <span>Remove from favorites</span>
                     </span>
                   </CustomMenu.MenuItem>
-                )}
-                <CustomMenu.MenuItem onClick={handleCopyText}>
+                )} */}
+                {/* <CustomMenu.MenuItem onClick={handleCopyText}>
                   <span className="flex items-center justify-start gap-2">
                     <LinkIcon className="h-4 w-4" />
                     <span>Copy project link</span>
                   </span>
-                </CustomMenu.MenuItem>
+                </CustomMenu.MenuItem> */}
               </CustomMenu>
             )}
           </div>
@@ -171,19 +170,17 @@ export const SingleSidebarProject: React.FC<Props> = ({
                 return (
                   <Link key={item.name} href={item.href}>
                     <a
-                      className={`group flex items-center rounded-md p-2 text-xs font-medium outline-none ${
-                        item.href === router.asPath
-                          ? "bg-indigo-50 text-gray-900"
-                          : "text-gray-500 hover:bg-indigo-50 hover:text-gray-900 focus:bg-indigo-50 focus:text-gray-900"
-                      } ${sidebarCollapse ? "justify-center" : ""}`}
+                      className={`group flex items-center rounded-md p-2 text-xs font-medium outline-none ${item.href === router.asPath
+                        ? "bg-indigo-50 text-gray-900"
+                        : "text-gray-500 hover:bg-indigo-50 hover:text-gray-900 focus:bg-indigo-50 focus:text-gray-900"
+                        } ${sidebarCollapse ? "justify-center" : ""}`}
                     >
                       <div className="grid place-items-center">
                         <item.icon
-                          className={`h-5 w-5 flex-shrink-0 ${
-                            item.href === router.asPath
-                              ? "text-gray-900"
-                              : "text-gray-500 group-hover:text-gray-900"
-                          } ${!sidebarCollapse ? "mr-3" : ""}`}
+                          className={`h-5 w-5 flex-shrink-0 ${item.href === router.asPath
+                            ? "text-gray-900"
+                            : "text-gray-500 group-hover:text-gray-900"
+                            } ${!sidebarCollapse ? "mr-3" : ""}`}
                           color={item.href === router.asPath ? "#111827" : "#858e96"}
                           aria-hidden="true"
                         />

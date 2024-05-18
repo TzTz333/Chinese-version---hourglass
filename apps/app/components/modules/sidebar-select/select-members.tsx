@@ -36,8 +36,8 @@ export const SidebarMembersSelect: React.FC<Props> = ({ value, onChange }) => {
         (member.member.first_name && member.member.first_name !== ""
           ? member.member.first_name
           : member.member.email) +
-          " " +
-          member.member.last_name ?? "",
+        " " +
+        member.member.last_name ?? "",
       content: (
         <div className="flex items-center gap-2">
           <Avatar user={member.member} />
@@ -52,7 +52,7 @@ export const SidebarMembersSelect: React.FC<Props> = ({ value, onChange }) => {
     <div className="flex items-center justify-start gap-1">
       <div className="flex w-40 items-center justify-start gap-2">
         <UserGroupIcon className="h-5 w-5 text-gray-400" />
-        <span>Members</span>
+        <span>成员</span>
       </div>
       <div className="sm:basis-1/2">
         <CustomSearchSelect
@@ -62,10 +62,10 @@ export const SidebarMembersSelect: React.FC<Props> = ({ value, onChange }) => {
               {value && value.length > 0 && Array.isArray(value) ? (
                 <div className="flex items-center justify-center gap-2">
                   <AssigneesList userIds={value} length={3} showLength={false} />
-                  <span className="text-gray-500">{value.length} Assignees</span>
+                  <span className="text-gray-500">{value.length} 责任人</span>
                 </div>
               ) : (
-                "No members"
+                "没有成员"
               )}
             </div>
           }

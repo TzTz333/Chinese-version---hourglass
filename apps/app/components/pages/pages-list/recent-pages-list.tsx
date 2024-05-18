@@ -55,8 +55,8 @@ export const RecentPagesList: React.FC<TPagesListProps> = ({ viewType }) => {
           <div className="mt-4">
             <EmptyState
               type="page"
-              title="Create New Page"
-              description="Create and document issues effortlessly in one place with Plane Notes, AI-powered for ease."
+              title="创建一个新的文档"
+              description="使用Page创建和记录问题。"
               imgURL={emptyPage}
             />
           </div>

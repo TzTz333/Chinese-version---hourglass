@@ -120,8 +120,8 @@ const ControlSettings: NextPage<TControlSettingsProps> = (props) => {
         <div className="space-y-8 sm:space-y-12">
           <div className="grid grid-cols-12 items-start gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Project Lead</h4>
-              <p className="text-gray-500">Select the project leader.</p>
+              <h4 className="text-xl font-semibold">项目负责人</h4>
+              <p className="text-gray-500">选择项目负责人。</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               {projectDetails ? (

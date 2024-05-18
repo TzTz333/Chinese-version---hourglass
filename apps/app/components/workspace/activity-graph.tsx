@@ -107,32 +107,29 @@ export const ActivityGraph: React.FC<Props> = ({ activities }) => {
               return (
                 <Tooltip
                   key={date}
-                  tooltipContent={`${
-                    isActive ? isActive.activity_count : 0
-                  } activities on ${renderShortNumericDateFormat(date)}`}
+                  tooltipContent={`${isActive ? isActive.activity_count : 0
+                    } activities on ${renderShortNumericDateFormat(date)}`}
                   theme="dark"
                 >
                   <div
-                    className={`${
-                      date === "" ? "pointer-events-none opacity-0" : ""
-                    } h-4 w-4 rounded ${
-                      isActive
+                    className={`${date === "" ? "pointer-events-none opacity-0" : ""
+                      } h-4 w-4 rounded ${isActive
                         ? `bg-blue-500 ${activitiesIntensity(isActive.activity_count)}`
                         : "bg-gray-100"
-                    }`}
+                      }`}
                   />
                 </Tooltip>
               );
             })}
           </div>
           <div className="mt-8 flex items-center gap-2 text-xs">
-            <span>Less</span>
+            <span>更少</span>
             <span className="h-4 w-4 rounded bg-gray-100" />
             <span className="h-4 w-4 rounded bg-blue-500 opacity-20" />
             <span className="h-4 w-4 rounded bg-blue-500 opacity-40" />
             <span className="h-4 w-4 rounded bg-blue-500 opacity-80" />
             <span className="h-4 w-4 rounded bg-blue-500" />
-            <span>More</span>
+            <span>更多</span>
           </div>
         </div>
       </div>

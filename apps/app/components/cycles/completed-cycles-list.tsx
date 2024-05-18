@@ -66,7 +66,7 @@ export const CompletedCyclesList: React.FC<CompletedCyclesListProps> = ({
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <ExclamationIcon height={14} width={14} />
-              <span>Completed cycles are not editable.</span>
+              <span>已完成的周期不可编辑。</span>
             </div>
             <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-3">
               {completedCycles.completed_cycles.map((cycle) => (
@@ -83,9 +83,8 @@ export const CompletedCyclesList: React.FC<CompletedCyclesListProps> = ({
         ) : (
           <EmptyState
             type="cycle"
-            title="Create New Cycle"
-            description="Sprint more effectively with Cycles by confining your project
-          to a fixed amount of time. Create new cycle now."
+            title="创建一个新的 Cycle"
+            description="通过将项目限制在固定的时间内，使用 Cycles 来更有效地进行冲刺。"
             imgURL={emptyCycle}
           />
         )

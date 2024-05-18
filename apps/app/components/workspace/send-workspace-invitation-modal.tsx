@@ -103,7 +103,7 @@ const SendWorkspaceInvitationModal: React.FC<Props> = ({
                   <div className="space-y-5">
                     <div>
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                        成员们
+                        邀请成员
                       </Dialog.Title>
                       <p className="text-sm text-gray-500">
                         邀请成员加入工作区。
@@ -153,9 +153,9 @@ const SendWorkspaceInvitationModal: React.FC<Props> = ({
                     </div>
                   </div>
                   <div className="mt-5 flex justify-end gap-2">
-                    <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
+                    <SecondaryButton onClick={handleClose}>取消</SecondaryButton>
                     <PrimaryButton type="submit" loading={isSubmitting}>
-                      {isSubmitting ? "Sending Invitation..." : "Send Invitation"}
+                      {isSubmitting ? "发送邀请中..." : "发送邀请"}
                     </PrimaryButton>
                   </div>
                 </form>

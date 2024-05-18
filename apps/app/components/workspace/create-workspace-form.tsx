@@ -102,7 +102,7 @@ export const CreateWorkspaceForm: React.FC<Props> = ({
         <div className="flex flex-col rounded-[10px] bg-white shadow-md">
           <div className="flex flex-col justify-between gap-3 px-4 py-7">
             <div className="flex flex-col items-start justify-center gap-2.5">
-              <span>Workspace name</span>
+              <span>工作区名称</span>
               <Input
                 name="name"
                 register={register}
@@ -111,14 +111,14 @@ export const CreateWorkspaceForm: React.FC<Props> = ({
                   setValue("slug", e.target.value.toLocaleLowerCase().trim().replace(/ /g, "-"))
                 }
                 validations={{
-                  required: "Workspace name is required",
+                  required: "工作区名称是必填项",
                 }}
-                placeholder="e.g. My Workspace"
+                placeholder="名称"
                 error={errors.name}
               />
             </div>
             <div className="flex flex-col items-start justify-center gap-2.5">
-              <span>Workspace URL</span>
+              <span>工作区 URL</span>
               <div className="flex w-full items-center rounded-md border border-gray-300 px-3">
                 <span className="text-sm text-slate-600">https://app.plane.so/</span>
                 <Input
@@ -130,13 +130,13 @@ export const CreateWorkspaceForm: React.FC<Props> = ({
                 />
               </div>
               {slugError && (
-                <span className="-mt-3 text-sm text-red-500">Workspace URL is already taken!</span>
+                <span className="-mt-3 text-sm text-red-500">工作区 URL 已被占用！</span>
               )}
             </div>
           </div>
 
           <div className="flex flex-col items-start justify-center gap-2.5 border-t border-gray-300 px-4 py-7">
-            <span>How large is your company</span>
+            <span>你的团队规模</span>
             <div className="w-full">
               <Controller
                 name="company_size"
@@ -146,7 +146,7 @@ export const CreateWorkspaceForm: React.FC<Props> = ({
                   <CustomSelect
                     value={value}
                     onChange={onChange}
-                    label={value ? value.toString() : "Select company size"}
+                    label={value ? value.toString() : "选择公司人数"}
                     input
                     width="w-full"
                   >
@@ -171,7 +171,7 @@ export const CreateWorkspaceForm: React.FC<Props> = ({
               size="md"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Creating..." : "Create Workspace"}
+              {isSubmitting ? "创建中..." : "创建工作区"}
             </PrimaryButton>
           </div>
         </div>

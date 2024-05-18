@@ -87,7 +87,7 @@ export const ViewForm: React.FC<Props> = ({
               label="Name"
               name="name"
               type="name"
-              placeholder="Enter name"
+              placeholder="输入名称"
               autoComplete="off"
               error={errors.name}
               register={register}
@@ -151,8 +151,8 @@ export const ViewForm: React.FC<Props> = ({
               ? "Updating View..."
               : "Update View"
             : isSubmitting
-            ? "Creating View..."
-            : "Create View"}
+              ? "Creating View..."
+              : "Create View"}
         </PrimaryButton>
       </div>
     </form>

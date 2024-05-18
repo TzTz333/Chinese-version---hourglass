@@ -58,15 +58,13 @@ export const WorkspaceHelpSection: FC<WorkspaceHelpSectionProps> = (props) => {
 
   return (
     <div
-      className={`flex w-full items-center justify-between self-baseline border-t bg-white px-6 py-2 ${
-        sidebarCollapse ? "flex-col" : ""
-      }`}
+      className={`flex w-full items-center justify-between self-baseline border-t bg-white px-6 py-2 ${sidebarCollapse ? "flex-col" : ""
+        }`}
     >
       <button
         type="button"
-        className={`flex items-center gap-x-1 rounded-md px-2 py-2 text-xs font-medium text-gray-500 outline-none hover:bg-gray-100 hover:text-gray-900 ${
-          sidebarCollapse ? "w-full justify-center" : ""
-        }`}
+        className={`flex items-center gap-x-1 rounded-md px-2 py-2 text-xs font-medium text-gray-500 outline-none hover:bg-gray-100 hover:text-gray-900 ${sidebarCollapse ? "w-full justify-center" : ""
+          }`}
         onClick={() => {
           const e = new KeyboardEvent("keydown", {
             key: "h",
@@ -76,18 +74,17 @@ export const WorkspaceHelpSection: FC<WorkspaceHelpSectionProps> = (props) => {
         title="Shortcuts"
       >
         <RocketLaunchIcon className="h-4 w-4 text-gray-500" />
-        {!sidebarCollapse && <span>Shortcuts</span>}
+        {!sidebarCollapse && <span>快捷键</span>}
       </button>
       <button
         type="button"
-        className={`flex items-center gap-x-1 rounded-md px-2 py-2 text-xs font-medium text-gray-500 outline-none hover:bg-gray-100 hover:text-gray-900 ${
-          sidebarCollapse ? "w-full justify-center" : ""
-        }`}
+        className={`flex items-center gap-x-1 rounded-md px-2 py-2 text-xs font-medium text-gray-500 outline-none hover:bg-gray-100 hover:text-gray-900 ${sidebarCollapse ? "w-full justify-center" : ""
+          }`}
         onClick={() => setIsNeedHelpOpen((prev) => !prev)}
         title="Help"
       >
-        <QuestionMarkCircleIcon className="h-4 w-4 text-gray-500" />
-        {!sidebarCollapse && <span>Help</span>}
+        {/* <QuestionMarkCircleIcon className="h-4 w-4 text-gray-500" /> */}
+        {/* {!sidebarCollapse && <span>Help</span>} */}
       </button>
       <button
         type="button"
@@ -98,15 +95,13 @@ export const WorkspaceHelpSection: FC<WorkspaceHelpSectionProps> = (props) => {
       </button>
       <button
         type="button"
-        className={`hidden items-center gap-3 rounded-md px-2 py-2 text-xs font-medium text-gray-500 outline-none hover:bg-gray-100 hover:text-gray-900 md:flex ${
-          sidebarCollapse ? "w-full justify-center" : ""
-        }`}
+        className={`hidden items-center gap-3 rounded-md px-2 py-2 text-xs font-medium text-gray-500 outline-none hover:bg-gray-100 hover:text-gray-900 md:flex ${sidebarCollapse ? "w-full justify-center" : ""
+          }`}
         onClick={() => toggleCollapsed()}
       >
         <ArrowLongLeftIcon
-          className={`h-4 w-4 flex-shrink-0 text-gray-500 duration-300 group-hover:text-gray-900 ${
-            sidebarCollapse ? "rotate-180" : ""
-          }`}
+          className={`h-4 w-4 flex-shrink-0 text-gray-500 duration-300 group-hover:text-gray-900 ${sidebarCollapse ? "rotate-180" : ""
+            }`}
         />
       </button>
 

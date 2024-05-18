@@ -141,9 +141,9 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
         <div className="space-y-8 sm:space-y-12">
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Workspace Logo</h4>
+              <h4 className="text-xl font-semibold">该工作区的Logo</h4>
               <p className="text-gray-500">
-                
+
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -182,7 +182,7 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
               <h4 className="text-xl font-semibold">URL</h4>
-              <p className="text-gray-500">你工作区的URL.</p>
+              <p className="text-gray-500">该工作区的URL。</p>
             </div>
             <div className="col-span-12 flex items-center gap-2 sm:col-span-6">
               <Input
@@ -214,8 +214,8 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Name</h4>
-              <p className="text-gray-500">Give a name to your workspace.</p>
+              <h4 className="text-xl font-semibold">名字</h4>
+              <p className="text-gray-500">给你的工作区命名。</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               <Input
@@ -233,8 +233,8 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
           </div>
           <div className="grid grid-cols-12 gap-4 sm:gap-16">
             <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Company Size</h4>
-              <p className="text-gray-500">How big is your company?</p>
+              <h4 className="text-xl font-semibold">公司规模</h4>
+              <p className="text-gray-500">你所在的公司有多少人？</p>
             </div>
             <div className="col-span-12 sm:col-span-6">
               <Controller
@@ -244,7 +244,7 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
                   <CustomSelect
                     value={value}
                     onChange={onChange}
-                    label={value ? value.toString() : "Select company size"}
+                    label={value ? value.toString() : "选择公司人数"}
                     input
                   >
                     {COMPANY_SIZE?.map((item) => (
@@ -257,24 +257,18 @@ const WorkspaceSettings: NextPage<UserAuth> = (props) => {
               />
             </div>
           </div>
-          <div className="sm:text-right">
-            <SecondaryButton onClick={handleSubmit(onSubmit)} loading={isSubmitting}>
-              {isSubmitting ? "Updating..." : "Update Workspace"}
-            </SecondaryButton>
-          </div>
-          <div className="grid grid-cols-12 gap-4 sm:gap-16">
-            <div className="col-span-12 sm:col-span-6">
-              <h4 className="text-xl font-semibold">Danger Zone</h4>
-              <p className="text-gray-500">
-                The danger zone of the workspace delete page is a critical area that requires
-                careful consideration and attention. When deleting a workspace, all of the data and
-                resources within that workspace will be permanently removed and cannot be recovered.
-              </p>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <OutlineButton theme="danger" onClick={() => setIsOpen(true)}>
-                Delete the workspace
-              </OutlineButton>
+          <div className="flex justify-end gap-2 sm:gap-4">
+            <div className="flex gap-2 sm:gap-4">
+              <div className="col-span-12 sm:col-span-6">
+                <OutlineButton theme="danger" onClick={() => setIsOpen(true)}>
+                  删除工作区
+                </OutlineButton>
+              </div>
+              <div className="col-span-12 sm:col-span-6">
+                <SecondaryButton onClick={handleSubmit(onSubmit)} loading={isSubmitting}>
+                  {isSubmitting ? "更新中..." : "更新工作区"}
+                </SecondaryButton>
+              </div>
             </div>
           </div>
         </div>

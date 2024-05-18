@@ -77,7 +77,7 @@ export const SidebarStateSelect: React.FC<Props> = ({ value, onChange, userAuth 
                 </CustomSelect.Option>
               ))
             ) : (
-              <div className="text-center">No states found</div>
+              <div className="text-center">未找到定义状态</div>
             )
           ) : (
             <Spinner />

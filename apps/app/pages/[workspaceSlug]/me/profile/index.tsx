@@ -163,7 +163,7 @@ const Profile: NextPage = () => {
             <div className="col-span-12 sm:col-span-6">
               <h4 className="text-xl font-semibold">个人资料设置</h4>
               <p className="text-gray-500">
-              最大文件大小为 5MB。支持的文件类型为 .jpg 和 .png
+                最大文件大小为 5MB。支持的文件类型为 .jpg 和 .png
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -211,7 +211,7 @@ const Profile: NextPage = () => {
             <div className="col-span-12 sm:col-span-6">
               <h4 className="text-xl font-semibold">昵称</h4>
               <p className="text-gray-500">
-               此名称将在你正在处理的所有项目中显示
+                此名称将在你正在处理的所有项目中显示
               </p>
             </div>
             <div className="col-span-12 sm:col-span-6 flex items-center gap-2">
@@ -267,7 +267,7 @@ const Profile: NextPage = () => {
                   <CustomSelect
                     value={value}
                     onChange={onChange}
-                    label={value ? value.toString() : "选择你的角色"}
+                    label={value ? USER_ROLES.findLast(item => item.value === value)?.label : "选择你的角色"}
                     width="w-full"
                     input
                     position="right"

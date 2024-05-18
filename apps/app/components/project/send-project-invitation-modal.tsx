@@ -133,11 +133,11 @@ const SendProjectInvitationModal: React.FC<Props> = ({ isOpen, setIsOpen, member
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="space-y-5">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      Invite Members
+                      邀请成员
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Invite members to work on your project.
+                        邀请成员参与您的项目。
                       </p>
                     </div>
                     <div className="space-y-3">
@@ -218,9 +218,9 @@ const SendProjectInvitationModal: React.FC<Props> = ({ isOpen, setIsOpen, member
                     </div>
                   </div>
                   <div className="mt-5 flex justify-end gap-2">
-                    <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
+                    <SecondaryButton onClick={handleClose}>取消</SecondaryButton>
                     <PrimaryButton type="submit" loading={isSubmitting}>
-                      {isSubmitting ? "Sending Invitation..." : "Send Invitation"}
+                      {isSubmitting ? "发送邀请中..." : "发送邀请"}
                     </PrimaryButton>
                   </div>
                 </form>

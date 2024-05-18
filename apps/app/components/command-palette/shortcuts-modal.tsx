@@ -15,32 +15,32 @@ type Props = {
 
 const shortcuts = [
   {
-    title: "Navigation",
+    title: "导航栏",
     shortcuts: [
-      { keys: "Ctrl,K", description: "To open navigator" },
-      { keys: "↑", description: "Move up" },
-      { keys: "↓", description: "Move down" },
-      { keys: "←", description: "Move left" },
-      { keys: "→", description: "Move right" },
-      { keys: "Enter", description: "Select" },
-      { keys: "Esc", description: "Close" },
+      { keys: "Ctrl,K", description: "打开导航" },
+      { keys: "↑", description: "向上移动" },
+      { keys: "↓", description: "向下移动" },
+      { keys: "←", description: "向左移动" },
+      { keys: "→", description: "向右移动" },
+      { keys: "Enter", description: "选择" },
+      { keys: "Esc", description: "关闭" },
     ],
   },
   {
-    title: "Common",
+    title: "通用",
     shortcuts: [
-      { keys: "P", description: "To create project" },
-      { keys: "C", description: "To create issue" },
-      { keys: "Q", description: "To create cycle" },
-      { keys: "M", description: "To create module" },
-      { keys: "V", description: "To create view" },
-      { keys: "D", description: "To create page" },
-      { keys: "Delete", description: "To bulk delete issues" },
-      { keys: "H", description: "To open shortcuts guide" },
-      {
-        keys: "Ctrl,Alt,C",
-        description: "To copy issue url when on issue detail page",
-      },
+      { keys: "P", description: "创建一个新的项目" },
+      { keys: "C", description: "创建一个新的issue" },
+      { keys: "Q", description: "创建一个新的cycle" },
+      // { keys: "M", description: "To create module" },
+      // { keys: "V", description: "To create view" },
+      { keys: "D", description: "创建一个新的page" },
+      // { keys: "Delete", description: "To bulk delete issues" },
+      { keys: "H", description: "打开快捷键指南" },
+      // {
+      //   keys: "Ctrl,Alt,C",
+      //   description: "To copy issue url when on issue detail page",
+      // },
     ],
   },
 ];
@@ -93,7 +93,7 @@ export const ShortcutsModal: React.FC<Props> = ({ isOpen, setIsOpen }) => {
                         as="h3"
                         className="flex justify-between text-lg font-medium leading-6 text-gray-900"
                       >
-                        <span>Keyboard Shortcuts</span>
+                        <span>快捷键指南</span>
                         <span>
                           <button type="button" onClick={() => setIsOpen(false)}>
                             <XMarkIcon
@@ -103,19 +103,7 @@ export const ShortcutsModal: React.FC<Props> = ({ isOpen, setIsOpen }) => {
                           </button>
                         </span>
                       </Dialog.Title>
-                      <div>
-                        <div className="flex w-full items-center justify-start gap-1 rounded border-[0.6px] border-gray-200 bg-gray-100 px-3 py-2">
-                          <MagnifyingGlassIcon className="h-3.5 w-3.5 text-gray-500" />
-                          <Input
-                            className="w-full  border-none bg-transparent py-1 px-2 text-xs text-gray-500 focus:outline-none"
-                            id="search"
-                            name="search"
-                            type="text"
-                            placeholder="Search for shortcuts"
-                            onChange={(e) => setQuery(e.target.value)}
-                          />
-                        </div>
-                      </div>
+
                       <div className="flex w-full flex-col gap-y-3">
                         {query.trim().length > 0 ? (
                           filteredShortcuts.length > 0 ? (

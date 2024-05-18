@@ -61,14 +61,13 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
           <Combobox.Button
             className={({ open }) =>
               `flex cursor-pointer items-center rounded-md border text-xs shadow-sm duration-200 
-              ${
-                open
-                  ? "border-theme bg-theme/5 outline-none ring-1 ring-theme "
-                  : "hover:bg-theme/5 "
+              ${open
+                ? "border-theme bg-theme/5 outline-none ring-1 ring-theme "
+                : "hover:bg-theme/5 "
               }`
             }
           >
-            {value && value.length > 0 ? (
+            {Array.isArray(value) && value.length > 0 ? (
               <span className="flex items-center justify-center gap-2 px-3 py-1 text-xs">
                 <IssueLabelsList
                   labels={value.map((v) => issueLabels?.find((l) => l.id === v)?.color) ?? []}
@@ -120,8 +119,7 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
                             <Combobox.Option
                               key={label.id}
                               className={({ active }) =>
-                                `${
-                                  active ? "bg-gray-200" : ""
+                                `${active ? "bg-gray-200" : ""
                                 } group flex min-w-[14rem] cursor-pointer select-none items-center gap-2 truncate rounded px-1 py-1.5 text-gray-600`
                               }
                               value={label.id}
@@ -140,9 +138,8 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
                                   </div>
                                   <div className="flex items-center justify-center rounded p-1">
                                     <CheckIcon
-                                      className={`h-3 w-3 ${
-                                        selected ? "opacity-100" : "opacity-0"
-                                      }`}
+                                      className={`h-3 w-3 ${selected ? "opacity-100" : "opacity-0"
+                                        }`}
                                     />
                                   </div>
                                 </div>
@@ -160,8 +157,7 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
                                 <Combobox.Option
                                   key={child.id}
                                   className={({ active }) =>
-                                    `${
-                                      active ? "bg-gray-200" : ""
+                                    `${active ? "bg-gray-200" : ""
                                     } group flex min-w-[14rem] cursor-pointer select-none items-center gap-2 truncate rounded px-1 py-1.5 text-gray-600`
                                   }
                                   value={child.id}
@@ -179,9 +175,8 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
                                       </div>
                                       <div className="flex items-center justify-center rounded p-1">
                                         <CheckIcon
-                                          className={`h-3 w-3 ${
-                                            selected ? "opacity-100" : "opacity-0"
-                                          }`}
+                                          className={`h-3 w-3 ${selected ? "opacity-100" : "opacity-0"
+                                            }`}
                                         />
                                       </div>
                                     </div>
@@ -193,10 +188,10 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
                         );
                     })
                   ) : (
-                    <p className="px-2 text-xs text-gray-500">No labels found</p>
+                    <p className="px-2 text-xs text-gray-500">没有找到标签</p>
                   )
                 ) : (
-                  <p className="px-2 text-xs text-gray-500">Loading...</p>
+                  <p className="px-2 text-xs text-gray-500">加载中...</p>
                 )}
                 <button
                   type="button"
@@ -205,7 +200,7 @@ export const IssueLabelSelect: React.FC<Props> = ({ setIsOpen, value, onChange, 
                 >
                   <span className="flex items-center justify-start gap-1">
                     <PlusIcon className="h-4 w-4 text-gray-600" aria-hidden="true" />
-                    <span className="text-gray-600">Create New Label</span>
+                    <span className="text-gray-600">创建一个新的标签</span>
                   </span>
                 </button>
               </div>

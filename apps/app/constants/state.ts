@@ -11,9 +11,9 @@ export const STATE_GROUP_COLORS: {
 export const STATE_GROUP_NAMES: {
   [key: string]: string;
 } = {
-  backlog: "积压任务",
+  backlog: "待办",
   unstarted: "未开始",
-  started: "已开始",
+  started: "进行中",
   cancelled: "已取消",
   completed: "已完成",
 };

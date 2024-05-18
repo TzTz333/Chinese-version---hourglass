@@ -80,26 +80,24 @@ export const SingleBoard: React.FC<Props> = ({
           <StrictModeDroppable key={groupTitle} droppableId={groupTitle}>
             {(provided, snapshot) => (
               <div
-                className={`relative h-full overflow-y-auto p-1  ${
-                  snapshot.isDraggingOver ? "bg-indigo-50 bg-opacity-50" : ""
-                } ${!isCollapsed ? "hidden" : "block"}`}
+                className={`relative h-full overflow-y-auto p-1  ${snapshot.isDraggingOver ? "bg-indigo-50 bg-opacity-50" : ""
+                  } ${!isCollapsed ? "hidden" : "block"}`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 {orderBy !== "sort_order" && (
                   <>
                     <div
-                      className={`absolute ${
-                        snapshot.isDraggingOver ? "block" : "hidden"
-                      } pointer-events-none top-0 left-0 z-[99] h-full w-full bg-gray-100 opacity-50`}
+                      className={`absolute ${snapshot.isDraggingOver ? "block" : "hidden"
+                        } pointer-events-none top-0 left-0 z-[99] h-full w-full bg-gray-100 opacity-50`}
                     />
                     <div
-                      className={`absolute ${
-                        snapshot.isDraggingOver ? "block" : "hidden"
-                      } pointer-events-none top-1/2 left-1/2 z-[99] -translate-y-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-white p-2 text-xs`}
+                      className={`absolute ${snapshot.isDraggingOver ? "block" : "hidden"
+                        } pointer-events-none top-1/2 left-1/2 z-[99] -translate-y-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-white p-2 text-xs`}
                     >
-                      This board is ordered by{" "}
+                      该板块由{" "}
                       {replaceUnderscoreIfSnakeCase(orderBy ?? "created_at")}
+                      创建
                     </div>
                   </>
                 )}
@@ -148,7 +146,7 @@ export const SingleBoard: React.FC<Props> = ({
                     onClick={addIssueToState}
                   >
                     <PlusIcon className="h-4 w-4" />
-                    Add Issue
+                    添加Issue
                   </button>
                 ) : (
                   !isCompleted && (
@@ -159,18 +157,18 @@ export const SingleBoard: React.FC<Props> = ({
                           className="flex items-center gap-2 font-medium text-theme outline-none"
                         >
                           <PlusIcon className="h-4 w-4" />
-                          Add Issue
+                          添加Issue
                         </button>
                       }
                       optionsPosition="left"
                       noBorder
                     >
                       <CustomMenu.MenuItem onClick={addIssueToState}>
-                        Create new
+                        创建新的Issue
                       </CustomMenu.MenuItem>
                       {openIssuesListModal && (
                         <CustomMenu.MenuItem onClick={openIssuesListModal}>
-                          Add an existing issue
+                          添加当前Issue
                         </CustomMenu.MenuItem>
                       )}
                     </CustomMenu>

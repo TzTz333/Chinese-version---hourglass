@@ -103,15 +103,15 @@ export const EmailPasswordForm = ({ onSuccess }: any) => {
             placeholder="填写密码"
           />
         </div>
-
-        {/* 忘记密码链接 */}
+        {/* 
+        忘记密码链接
         <div className="mt-2 flex items-center justify-between">
           <div className="ml-auto text-sm">
             <Link href={"/forgot-password"}>
               <a className="font-medium text-theme hover:text-indigo-500">忘记密码</a>
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* 提交按钮 */}
         <div className="mt-5">

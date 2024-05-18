@@ -109,9 +109,8 @@ export const CreateLabelModal: React.FC<Props> = ({ isOpen, projectId, handleClo
                         {({ open, close }) => (
                           <>
                             <Popover.Button
-                              className={`group inline-flex items-center rounded-sm bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
-                                open ? "text-gray-900" : "text-gray-500"
-                              }`}
+                              className={`group inline-flex items-center rounded-sm bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${open ? "text-gray-900" : "text-gray-500"
+                                }`}
                             >
                               {watch("color") && watch("color") !== "" && (
                                 <span
@@ -122,9 +121,8 @@ export const CreateLabelModal: React.FC<Props> = ({ isOpen, projectId, handleClo
                                 />
                               )}
                               <ChevronDownIcon
-                                className={`ml-2 h-5 w-5 group-hover:text-gray-500 ${
-                                  open ? "text-gray-600" : "text-gray-400"
-                                }`}
+                                className={`ml-2 h-5 w-5 group-hover:text-gray-500 ${open ? "text-gray-600" : "text-gray-400"
+                                  }`}
                                 aria-hidden="true"
                               />
                             </Popover.Button>
@@ -161,7 +159,7 @@ export const CreateLabelModal: React.FC<Props> = ({ isOpen, projectId, handleClo
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="Enter name"
+                        placeholder="输入名称"
                         autoComplete="off"
                         error={errors.name}
                         register={register}

@@ -327,12 +327,11 @@ export const SingleCycleCard: React.FC<TSingleStatProps> = ({
           <Disclosure>
             {({ open }) => (
               <div
-                className={`flex h-full w-full flex-col border-t border-gray-200 bg-gray-100 ${
-                  open ? "" : "flex-row"
-                }`}
+                className={`flex h-full w-full flex-col border-t border-gray-200 bg-gray-100 ${open ? "" : "flex-row"
+                  }`}
               >
-                <div className="flex w-full items-center gap-2 px-4 py-1">
-                  <span>Progress</span>
+                <div className="flex w-full items-center gap-2 px-4 py-1 whitespace-nowrap">
+                  <span>进度</span>
                   <LinearProgressIndicator data={progressIndicatorData} />
                   <Disclosure.Button>
                     <span className="p-1">
@@ -369,10 +368,10 @@ export const SingleCycleCard: React.FC<TSingleStatProps> = ({
                                     -{" "}
                                     {cycle.total_issues > 0
                                       ? `${Math.round(
-                                          ((cycle[group.key as keyof ICycle] as number) /
-                                            cycle.total_issues) *
-                                            100
-                                        )}%`
+                                        ((cycle[group.key as keyof ICycle] as number) /
+                                          cycle.total_issues) *
+                                        100
+                                      )}%`
                                       : "0%"}
                                   </span>
                                 </span>

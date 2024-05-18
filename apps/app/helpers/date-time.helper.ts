@@ -13,7 +13,7 @@ export const renderDateFormat = (date: string | Date | null) => {
 };
 
 export const renderShortNumericDateFormat = (date: string | Date) =>
-  new Date(date).toLocaleDateString("en-UK", {
+  new Date(date).toLocaleDateString("zh-CN", {
     day: "numeric",
     month: "short",
   });
@@ -112,18 +112,18 @@ export const renderShortDateWithYearFormat = (date: string | Date) => {
   date = new Date(date);
 
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "一月",
+    "二月",
+    "三月",
+    "四月",
+    "五月",
+    "六月",
+    "七月",
+    "八月",
+    "九月",
+    "十月",
+    "十一月",
+    "十二月",
   ];
   const day = date.getDate();
   const month = months[date.getMonth()];
@@ -137,18 +137,18 @@ export const renderShortDate = (date: string | Date) => {
   date = new Date(date);
 
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "一月",
+    "二月",
+    "三月",
+    "四月",
+    "五月",
+    "六月",
+    "七月",
+    "八月",
+    "九月",
+    "十月",
+    "十一月",
+    "十二月",
   ];
   const day = date.getDate();
   const month = months[date.getMonth()];

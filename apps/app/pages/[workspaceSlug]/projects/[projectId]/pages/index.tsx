@@ -173,11 +173,11 @@ const ProjectPages: NextPage<UserAuth> = (props) => {
             }}
           >
             <PlusIcon className="w-4 h-4" />
-            Create Page
+            创建文档
           </PrimaryButton>
         }
       >
-        <div className="space-y-4">
+        <div className="space-y-4 whitespace-nowrap">
           <form
             onSubmit={handleSubmit(createPage)}
             className="flex items-center justify-between gap-2 rounded-[10px] border border-gray-200 bg-white p-2 shadow-sm"
@@ -187,11 +187,11 @@ const ProjectPages: NextPage<UserAuth> = (props) => {
               name="name"
               register={register}
               className="border-none outline-none focus:ring-0"
-              placeholder="Type to create a new page..."
+              placeholder="创建新文档..."
             />
             {watch("name") !== "" && (
               <PrimaryButton type="submit" loading={isSubmitting}>
-                {isSubmitting ? "Creating..." : "Create"}
+                {isSubmitting ? "创建中..." : "创建"}
               </PrimaryButton>
             )}
           </form>
@@ -199,15 +199,14 @@ const ProjectPages: NextPage<UserAuth> = (props) => {
             <Tab.Group>
               <Tab.List as="div" className="flex items-center justify-between">
                 <div className="flex gap-4">
-                  {["Recent", "All", "Favorites", "Created by me", "Created by others"].map(
+                  {["近期", "全部", "收藏夹", "我创建的", "其他人创建的"].map(
                     (tab, index) => (
                       <Tab
                         key={index}
                         className={({ selected }) =>
-                          `rounded-full border px-5 py-1.5 text-sm outline-none ${
-                            selected
-                              ? "border-theme bg-theme text-white"
-                              : "border-gray-300 bg-white hover:bg-hover-gray"
+                          `rounded-full border px-5 py-1.5 text-sm outline-none ${selected
+                            ? "border-theme bg-theme text-white"
+                            : "border-gray-300 bg-white hover:bg-hover-gray"
                           }`
                         }
                       >
@@ -219,18 +218,16 @@ const ProjectPages: NextPage<UserAuth> = (props) => {
                 <div className="flex items-center gap-x-1">
                   <button
                     type="button"
-                    className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${
-                      viewType === "list" ? "bg-gray-200" : ""
-                    }`}
+                    className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${viewType === "list" ? "bg-gray-200" : ""
+                      }`}
                     onClick={() => setViewType("list")}
                   >
                     <ListBulletIcon className="h-4 w-4" />
                   </button>
                   <button
                     type="button"
-                    className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${
-                      viewType === "detailed" ? "bg-gray-200" : ""
-                    }`}
+                    className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${viewType === "detailed" ? "bg-gray-200" : ""
+                      }`}
                     onClick={() => setViewType("detailed")}
                   >
                     <Squares2X2Icon className="h-4 w-4" />

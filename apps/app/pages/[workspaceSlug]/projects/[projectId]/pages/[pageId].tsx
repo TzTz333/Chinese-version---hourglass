@@ -78,11 +78,11 @@ const SinglePage: NextPage<UserAuth> = (props) => {
     workspaceSlug && projectId && pageId ? PAGE_DETAILS(pageId as string) : null,
     workspaceSlug && projectId
       ? () =>
-          pagesService.getPageDetails(
-            workspaceSlug as string,
-            projectId as string,
-            pageId as string
-          )
+        pagesService.getPageDetails(
+          workspaceSlug as string,
+          projectId as string,
+          pageId as string
+        )
       : null
   );
 
@@ -90,11 +90,11 @@ const SinglePage: NextPage<UserAuth> = (props) => {
     workspaceSlug && projectId && pageId ? PAGE_BLOCKS_LIST(pageId as string) : null,
     workspaceSlug && projectId
       ? () =>
-          pagesService.listPageBlocks(
-            workspaceSlug as string,
-            projectId as string,
-            pageId as string
-          )
+        pagesService.listPageBlocks(
+          workspaceSlug as string,
+          projectId as string,
+          pageId as string
+        )
       : null
   );
 
@@ -308,9 +308,8 @@ const SinglePage: NextPage<UserAuth> = (props) => {
                         key={label.id}
                         className="group flex items-center gap-1 rounded-2xl border px-2 py-0.5 text-xs"
                         style={{
-                          backgroundColor: `${
-                            label?.color && label.color !== "" ? label.color : "#000000"
-                          }20`,
+                          backgroundColor: `${label?.color && label.color !== "" ? label.color : "#000000"
+                            }20`,
                         }}
                       >
                         <span
@@ -341,46 +340,46 @@ const SinglePage: NextPage<UserAuth> = (props) => {
                   />
                 </>
               ) : (
-                <CustomSearchSelect
-                  customButton={
-                    <button
-                      type="button"
-                      className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1.5 text-xs hover:bg-gray-200"
-                    >
-                      <PlusIcon className="h-3 w-3" />
-                      Add new label
-                    </button>
-                  }
-                  value={pageDetails.labels}
-                  onChange={(val: string[]) => partialUpdatePage({ labels_list: val })}
-                  options={options}
-                  multiple
-                  noChevron
-                />
+                // <CustomSearchSelect
+                //   customButton={
+                //     <button
+                //       type="button"
+                //       className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1.5 text-xs hover:bg-gray-200"
+                //     >
+                //       {/* <PlusIcon className="h-3 w-3" /> */}
+                //       {/* 添加新标签 */}
+                //     </button>
+                //   }
+                //   value={pageDetails.labels}
+                //   onChange={(val: string[]) => partialUpdatePage({ labels_list: val })}
+                //   options={options}
+                //   multiple
+                //   noChevron
+                // />
+                <></>
               )}
             </div>
             <div className="flex items-center gap-4">
               <Tooltip
-                tooltipContent={`Page last updated at ${renderShortTime(pageDetails.updated_at)}`}
+                tooltipContent={`本页面最后更新于 ${renderShortTime(pageDetails.updated_at)}`}
                 theme="dark"
               >
                 <span className="cursor-default text-sm text-gray-500">
                   {renderShortTime(pageDetails.updated_at)}
                 </span>
               </Tooltip>
-              <PrimaryButton className="flex items-center gap-2" onClick={handleCopyText}>
+              {/* <PrimaryButton className="flex items-center gap-2" onClick={handleCopyText}>
                 <ShareIcon className="h-4 w-4" />
-                Share
-              </PrimaryButton>
-              <div className="flex-shrink-0">
+                分享
+              </PrimaryButton> */}
+              {/* <div className="flex-shrink-0">
                 <Popover className="relative grid place-items-center">
                   {({ open }) => (
                     <>
                       <Popover.Button
                         type="button"
-                        className={`group inline-flex items-center outline-none ${
-                          open ? "text-gray-900" : "text-gray-500"
-                        }`}
+                        className={`group inline-flex items-center outline-none ${open ? "text-gray-900" : "text-gray-500"
+                          }`}
                       >
                         {watch("color") && watch("color") !== "" ? (
                           <span
@@ -413,8 +412,8 @@ const SinglePage: NextPage<UserAuth> = (props) => {
                     </>
                   )}
                 </Popover>
-              </div>
-              {pageDetails.access ? (
+              </div> */}
+              {/* {pageDetails.access ? (
                 <button onClick={() => partialUpdatePage({ access: 0 })} className="z-10">
                   <LockClosedIcon className="h-4 w-4" />
                 </button>
@@ -435,7 +434,7 @@ const SinglePage: NextPage<UserAuth> = (props) => {
                 <button onClick={handleAddToFavorites} type="button" className="z-10">
                   <StarIcon className="h-4 w-4" />
                 </button>
-              )}
+              )} */}
             </div>
           </div>
           <div>
@@ -481,7 +480,7 @@ const SinglePage: NextPage<UserAuth> = (props) => {
                     onClick={handleNewBlock}
                   >
                     <PlusIcon className="h-3 w-3" />
-                    Add new block
+                    添加新板块
                   </button>
                 )}
                 {createBlockForm && (

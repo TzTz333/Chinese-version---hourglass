@@ -88,9 +88,8 @@ export const WorkspaceSidebarDropdown = () => {
         <div className="flex items-center justify-between gap-2.5">
           <Menu.Button className="flex w-full items-center rounded-md py-2 text-sm font-semibold text-gray-700 focus:outline-none">
             <div
-              className={`flex w-full items-center gap-x-2 rounded-md bg-gray-100 px-2 py-1.5 ${
-                sidebarCollapse ? "justify-center" : ""
-              }`}
+              className={`flex w-full items-center gap-x-2 rounded-md bg-gray-100 px-2 py-1.5 ${sidebarCollapse ? "justify-center" : ""
+                }`}
             >
               <div className="relative grid h-6 w-6 place-items-center rounded bg-gray-700 uppercase text-white">
                 {activeWorkspace?.logo && activeWorkspace.logo !== "" ? (
@@ -171,11 +170,10 @@ export const WorkspaceSidebarDropdown = () => {
                             </div>
                             <span className="p-1">
                               <CheckIcon
-                                className={`h-3 w-3.5 text-gray-600 ${
-                                  active || workspace.id === activeWorkspace?.id
+                                className={`h-3 w-3.5 text-gray-600 ${active || workspace.id === activeWorkspace?.id
                                     ? "opacity-100"
                                     : "opacity-0"
-                                }`}
+                                  }`}
                               />
                             </span>
                           </button>
@@ -194,7 +192,7 @@ export const WorkspaceSidebarDropdown = () => {
                     className="flex w-full items-center gap-1 text-sm text-gray-600"
                   >
                     <PlusIcon className="h-3 w-3 text-gray-600" />
-                    Create Workspace
+                    创建工作区
                   </Menu.Item>
                 </div>
               ) : (

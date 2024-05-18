@@ -29,9 +29,8 @@ export const SidebarPrioritySelect: React.FC<Props> = ({ value, onChange, userAu
         <CustomSelect
           label={
             <span
-              className={`flex items-center gap-2 text-left capitalize ${
-                value ? "" : "text-gray-900"
-              }`}
+              className={`flex items-center gap-2 text-left capitalize ${value ? "" : "text-gray-900"
+                }`}
             >
               {getPriorityIcon(value && value !== "" ? value ?? "" : "None", "text-sm")}
               {value && value !== "" ? value : "None"}
@@ -43,11 +42,11 @@ export const SidebarPrioritySelect: React.FC<Props> = ({ value, onChange, userAu
           position="right"
           disabled={isNotAllowed}
         >
-          {PRIORITIES.map((option) => (
-            <CustomSelect.Option key={option} value={option} className="capitalize">
+          {Object.entries(PRIORITIES).map(([key, value]) => (
+            <CustomSelect.Option key={key} value={key} className="capitalize">
               <>
-                {getPriorityIcon(option, "text-sm")}
-                {option ?? "None"}
+                {getPriorityIcon(key, "text-sm")}
+                {value ?? "None"}
               </>
             </CustomSelect.Option>
           ))}

@@ -109,9 +109,8 @@ export const CreateUpdateLabelInline = forwardRef<Ref, Props>(function CreateUpd
 
   return (
     <div
-      className={`flex items-center gap-2 scroll-m-8 rounded-[10px] border bg-white p-5 ${
-        labelForm ? "" : "hidden"
-      }`}
+      className={`flex items-center gap-2 scroll-m-8 rounded-[10px] border bg-white p-5 ${labelForm ? "" : "hidden"
+        }`}
       ref={ref}
     >
       <div className="h-8 w-8 flex-shrink-0">
@@ -119,9 +118,8 @@ export const CreateUpdateLabelInline = forwardRef<Ref, Props>(function CreateUpd
           {({ open }) => (
             <>
               <Popover.Button
-                className={`group inline-flex items-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
-                  open ? "text-gray-900" : "text-gray-500"
-                }`}
+                className={`group inline-flex items-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${open ? "text-gray-900" : "text-gray-500"
+                  }`}
               >
                 {watch("color") && watch("color") !== "" && (
                   <span
@@ -175,7 +173,7 @@ export const CreateUpdateLabelInline = forwardRef<Ref, Props>(function CreateUpd
           setLabelForm(false);
         }}
       >
-        Cancel
+        取消
       </SecondaryButton>
       {isUpdating ? (
         <PrimaryButton onClick={handleSubmit(handleLabelUpdate)} loading={isSubmitting}>

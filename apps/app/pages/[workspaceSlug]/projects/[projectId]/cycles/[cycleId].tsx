@@ -66,11 +66,11 @@ const SingleCycle: React.FC<UserAuth> = (props) => {
     cycleId ? CYCLE_DETAILS(cycleId as string) : null,
     workspaceSlug && projectId && cycleId
       ? () =>
-          cycleServices.getCycleDetails(
-            workspaceSlug as string,
-            projectId as string,
-            cycleId as string
-          )
+        cycleServices.getCycleDetails(
+          workspaceSlug as string,
+          projectId as string,
+          cycleId as string
+        )
       : null
   );
 
@@ -156,9 +156,8 @@ const SingleCycle: React.FC<UserAuth> = (props) => {
             <IssuesFilterView />
             <button
               type="button"
-              className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-100 ${
-                cycleSidebar ? "rotate-180" : ""
-              }`}
+              className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-100 ${cycleSidebar ? "rotate-180" : ""
+                }`}
               onClick={() => setCycleSidebar((prevData) => !prevData)}
             >
               <ArrowLeftIcon className="h-4 w-4" />

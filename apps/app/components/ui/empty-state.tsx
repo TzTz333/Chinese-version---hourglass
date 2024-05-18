@@ -44,11 +44,11 @@ export const EmptyState: React.FC<Props> = ({ type, title, description, imgURL, 
       <h3 className="text-xl font-semibold">{title}</h3>
       {shortcutKey(type) && (
         <span>
-          Use shortcut{" "}
+          使用快捷键{" "}
           <span className="mx-1 rounded-sm border border-gray-200 bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800">
             {shortcutKey(type)}
           </span>{" "}
-          to create {type} from anywhere.
+          在这里创建一个 {type} 。
         </span>
       )}
       <p className="max-w-md text-sm text-gray-500">{description}</p>
@@ -70,7 +70,7 @@ export const EmptyState: React.FC<Props> = ({ type, title, description, imgURL, 
         }}
       >
         <PlusIcon className="h-4 w-4 font-bold text-white" />
-        Create New {capitalizeFirstLetter(type)}
+        创建一个新的 {capitalizeFirstLetter(type)}
       </PrimaryButton>
     </div>
   );

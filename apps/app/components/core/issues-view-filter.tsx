@@ -45,32 +45,43 @@ export const IssuesFilterView: React.FC = () => {
     projectId as string
   );
 
+  const translatePropertyKey = (key: string) => {
+    const translations: { [index: string]: string } = {
+      "assignee": "责任人",
+      "due_date": "截止日期",
+      "key": "ID",
+      "labels": "标签",
+      "priority": "优先级",
+      "state": "状态",
+      "sub_issue_count": "下一级issue数量",
+    };
+
+    return translations[key] || key; // 如果没有翻译，则返回原键值
+  };
+
   return (
     <div className="flex items-center gap-2">
       <div className="flex items-center gap-x-1">
         <button
           type="button"
-          className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${
-            issueView === "list" ? "bg-gray-200" : ""
-          }`}
+          className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${issueView === "list" ? "bg-gray-200" : ""
+            }`}
           onClick={() => setIssueView("list")}
         >
           <ListBulletIcon className="h-4 w-4" />
         </button>
         <button
           type="button"
-          className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${
-            issueView === "kanban" ? "bg-gray-200" : ""
-          }`}
+          className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${issueView === "kanban" ? "bg-gray-200" : ""
+            }`}
           onClick={() => setIssueView("kanban")}
         >
           <Squares2X2Icon className="h-4 w-4" />
         </button>
         <button
           type="button"
-          className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${
-            issueView === "calendar" ? "bg-gray-200" : ""
-          }`}
+          className={`grid h-7 w-7 place-items-center rounded p-1 outline-none duration-300 hover:bg-gray-200 ${issueView === "calendar" ? "bg-gray-200" : ""
+            }`}
           onClick={() => setIssueView("calendar")}
         >
           <CalendarDaysIcon className="h-4 w-4" />
@@ -110,11 +121,10 @@ export const IssuesFilterView: React.FC = () => {
         {({ open }) => (
           <>
             <Popover.Button
-              className={`group flex items-center gap-2 rounded-md border bg-transparent px-3 py-1.5 text-xs hover:bg-gray-100 hover:text-gray-900 focus:outline-none ${
-                open ? "bg-gray-100 text-gray-900" : "text-gray-500"
-              }`}
+              className={`group flex items-center gap-2 rounded-md border bg-transparent px-3 py-1.5 text-xs hover:bg-gray-100 hover:text-gray-900 focus:outline-none ${open ? "bg-gray-100 text-gray-900" : "text-gray-500"
+                }`}
             >
-              View
+              查看方式
               <ChevronDownIcon className="h-3 w-3" aria-hidden="true" />
             </Popover.Button>
 
@@ -131,7 +141,7 @@ export const IssuesFilterView: React.FC = () => {
                 <div className="relative divide-y-2">
                   <div className="space-y-4 pb-3 text-xs">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-gray-600">Group by</h4>
+                      <h4 className="text-gray-600">分组方式</h4>
                       <CustomMenu
                         label={
                           GROUP_BY_OPTIONS.find((option) => option.key === groupByProperty)?.name ??
@@ -152,7 +162,7 @@ export const IssuesFilterView: React.FC = () => {
                       </CustomMenu>
                     </div>
                     <div className="flex items-center justify-between">
-                      <h4 className="text-gray-600">Order by</h4>
+                      <h4 className="text-gray-600">排序方式</h4>
                       <CustomMenu
                         label={
                           ORDER_BY_OPTIONS.find((option) => option.key === orderBy)?.name ??
@@ -175,7 +185,7 @@ export const IssuesFilterView: React.FC = () => {
                       </CustomMenu>
                     </div>
                     <div className="flex items-center justify-between">
-                      <h4 className="text-gray-600">Issue type</h4>
+                      <h4 className="text-gray-600">Issue 类型</h4>
                       <CustomMenu
                         label={
                           FILTER_ISSUE_OPTIONS.find((option) => option.key === filters.type)
@@ -198,53 +208,52 @@ export const IssuesFilterView: React.FC = () => {
                       </CustomMenu>
                     </div>
                     <div className="flex items-center justify-between">
-                      <h4 className="text-gray-600">Show empty states</h4>
+                      <h4 className="text-gray-600">显示空状态</h4>
                       <button
                         type="button"
-                        className={`relative inline-flex h-3.5 w-6 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                          showEmptyGroups ? "bg-green-500" : "bg-gray-200"
-                        }`}
+                        className={`relative inline-flex h-3.5 w-6 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${showEmptyGroups ? "bg-green-500" : "bg-gray-200"
+                          }`}
                         role="switch"
                         aria-checked={showEmptyGroups}
                         onClick={() => setShowEmptyGroups(!showEmptyGroups)}
                       >
-                        <span className="sr-only">Show empty groups</span>
+                        {/* <span className="sr-only">显示空组</span>
                         <span
                           aria-hidden="true"
-                          className={`inline-block h-2.5 w-2.5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                            showEmptyGroups ? "translate-x-2.5" : "translate-x-0"
-                          }`}
-                        />
+                          className={`inline-block h-2.5 w-2.5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${showEmptyGroups ? "translate-x-2.5" : "translate-x-0"
+                            }`}
+                        /> */}
                       </button>
                     </div>
-                    <div className="relative flex justify-end gap-x-3">
+                    {/* <div className="relative flex justify-end gap-x-3">
                       <button type="button" onClick={() => resetFilterToDefault()}>
-                        Reset to default
+                        恢复默认
                       </button>
                       <button
                         type="button"
                         className="font-medium text-theme"
                         onClick={() => setNewFilterDefaultView()}
                       >
-                        Set as default
+                        设置为默认
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="space-y-2 py-3">
-                    <h4 className="text-sm text-gray-600">Display Properties</h4>
+                    <h4 className="text-sm text-gray-600">显示属性</h4>
                     <div className="flex flex-wrap items-center gap-2">
                       {Object.keys(properties).map((key) => (
                         <button
                           key={key}
                           type="button"
-                          className={`rounded border px-2 py-1 text-xs capitalize ${
-                            properties[key as keyof Properties]
-                              ? "border-theme bg-theme text-white"
-                              : "border-gray-300"
-                          }`}
+                          className={`rounded border px-2 py-1 text-xs capitalize ${properties[key as keyof Properties]
+                            ? "border-theme bg-theme text-white"
+                            : "border-gray-300"
+                            }`}
                           onClick={() => setProperties(key as keyof Properties)}
                         >
-                          {key === "key" ? "ID" : replaceUnderscoreIfSnakeCase(key)}
+                          {translatePropertyKey(key)}
+
+                          {/* {key === "key" ? "ID" : replaceUnderscoreIfSnakeCase(key)} */}
                         </button>
                       ))}
                     </div>

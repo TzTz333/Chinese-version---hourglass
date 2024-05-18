@@ -19,6 +19,7 @@ export interface IState {
   workspace_detail: IWorkspaceLite;
 }
 
+
 export interface StateResponse {
   [key: string]: IState[];
 }

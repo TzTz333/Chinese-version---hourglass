@@ -30,6 +30,23 @@ type Props = {
   isCompleted?: boolean;
 };
 
+type StateToChineseMap = { [key: string]: string };
+const stateNameToChinese: StateToChineseMap = {
+  Backlog: '待办',
+  Todo: "未开始",
+  "In Progress": "进行中",
+  Done: "已完成",
+  Cancelled: "已取消",
+
+};
+const stateNameToChinese2: StateToChineseMap = {
+  urgent: '紧急',
+  high: "较高",
+  medium: "中等",
+  low: "较低",
+  None: "None",
+};
+
 export const BoardHeader: React.FC<Props> = ({
   currentState,
   groupTitle,
@@ -64,20 +81,21 @@ export const BoardHeader: React.FC<Props> = ({
     groupTitle === "high"
       ? (bgColor = "#dc2626")
       : groupTitle === "medium"
-      ? (bgColor = "#f97316")
-      : groupTitle === "low"
-      ? (bgColor = "#22c55e")
-      : (bgColor = "#ff0000");
+        ? (bgColor = "#f97316")
+        : groupTitle === "low"
+          ? (bgColor = "#22c55e")
+          : (bgColor = "#ff0000");
 
   const getGroupTitle = () => {
     let title = addSpaceIfCamelCase(groupTitle);
 
     switch (selectedGroup) {
       case "state":
-        title = addSpaceIfCamelCase(currentState?.name ?? "");
+        const stateName: string = addSpaceIfCamelCase(currentState?.name ?? "");
+        title = stateNameToChinese[stateName];
         break;
       case "labels":
-        title = issueLabels?.find((label) => label.id === groupTitle)?.name ?? "None";
+        title = issueLabels?.find((label) => label.id === groupTitle)?.name ?? "未定义标签";
         break;
       case "created_by":
         const member = members?.find((member) => member.member.id === groupTitle)?.member;
@@ -85,6 +103,10 @@ export const BoardHeader: React.FC<Props> = ({
           member?.first_name && member.first_name !== ""
             ? `${member.first_name} ${member.last_name}`
             : member?.email ?? "";
+        break;
+      case "priority":
+        const stateName2: string = title;
+        title = stateNameToChinese2[stateName2];
         break;
     }
 
@@ -123,15 +145,13 @@ export const BoardHeader: React.FC<Props> = ({
 
   return (
     <div
-      className={`flex justify-between items-center px-1 ${
-        !isCollapsed ? "flex-col rounded-md border bg-gray-50" : ""
-      }`}
+      className={`flex justify-between items-center px-1 ${!isCollapsed ? "flex-col rounded-md border bg-gray-50" : ""
+        }`}
     >
       <div className={`flex items-center ${!isCollapsed ? "flex-col gap-2" : "gap-1"}`}>
         <div
-          className={`flex cursor-pointer items-center gap-x-3 ${
-            !isCollapsed ? "mb-2 flex-col gap-y-2 py-2" : ""
-          }`}
+          className={`flex cursor-pointer items-center gap-x-3 ${!isCollapsed ? "mb-2 flex-col gap-y-2 py-2" : ""
+            }`}
         >
           <span className="flex items-center">{getGroupIcon()}</span>
           <h2

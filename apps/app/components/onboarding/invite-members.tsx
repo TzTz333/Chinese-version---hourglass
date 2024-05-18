@@ -46,8 +46,8 @@ export const InviteMembers: React.FC<Props> = ({ setStep, workspace }) => {
       }}
     >
       <div className="flex w-full max-w-xl flex-col gap-12">
-        <div className="flex flex-col gap-6  rounded-[10px] bg-white px-10 py-7 shadow-md">
-          <h2 className="text-2xl font-medium ">Invite co-workers to your team</h2>
+        {/* <div className="flex flex-col gap-6  rounded-[10px] bg-white px-10 py-7 shadow-md">
+          <h2 className="text-2xl font-medium ">邀请合作伙伴参加你的项目！</h2>
           <div className="flex flex-col items-start justify-center gap-2.5 ">
             <span>Email</span>
             <div className="w-full">
@@ -60,26 +60,26 @@ export const InviteMembers: React.FC<Props> = ({ setStep, workspace }) => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex w-full flex-col items-center justify-center gap-3 ">
-          <PrimaryButton
+          {/* <PrimaryButton
             type="submit"
             className="flex w-1/2 items-center justify-center text-center"
             disabled={isSubmitting}
             size="md"
           >
-            {isSubmitting ? "Inviting..." : "Continue"}
-          </PrimaryButton>
+            {isSubmitting ? "邀请中..." : "继续"}
+          </PrimaryButton> */}
 
           <SecondaryButton
             type="button"
-            className="w-1/2 rounded-lg bg-transparent border-none"
+            className="flex w-1/2 items-center justify-center text-center bg-customPurple"
             size="md"
             outline
             onClick={() => setStep(4)}
           >
-            Skip
+            下一步
           </SecondaryButton>
         </div>
       </div>

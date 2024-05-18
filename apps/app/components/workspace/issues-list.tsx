@@ -23,7 +23,7 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
       overdue: "逾期",
       upcoming: "待办",
     };
-  
+
     return typesTranslation[type] || type;
   };
 
@@ -48,9 +48,8 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
       {issues ? (
         <div className="rounded-[10px] border bg-white p-4 text-sm h-[calc(100%-2.25rem)]">
           <div
-            className={`mb-2 grid grid-cols-4 gap-2 rounded-lg px-3 py-2 font-medium ${
-              type === "overdue" ? "bg-red-100" : "bg-gray-100"
-            }`}
+            className={`mb-2 grid grid-cols-4 gap-2 rounded-lg px-3 py-2 font-medium ${type === "overdue" ? "bg-red-100" : "bg-gray-100"
+              }`}
           >
             <h4 className="capitalize">{translateType(type)}</h4>
             <h4 className="col-span-2">Issue</h4>
@@ -69,13 +68,12 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
                     <a>
                       <div className="grid grid-cols-4 gap-2 px-3 py-2">
                         <h5
-                          className={`flex cursor-default items-center gap-2 ${
-                            type === "overdue"
+                          className={`flex cursor-default items-center gap-2 ${type === "overdue"
                               ? dateDifference > 6
                                 ? "text-red-500"
                                 : "text-yellow-400"
                               : ""
-                          }`}
+                            }`}
                         >
                           {type === "overdue" && (
                             <ExclamationTriangleIcon className="h-3.5 w-3.5" />
@@ -96,7 +94,7 @@ export const IssuesList: React.FC<Props> = ({ issues, type }) => {
                 <div className="flex flex-col items-center gap-4">
                   <LayerDiagonalIcon height={60} width={60} />
                   <span>
-                    没有发现问题。 使用快捷键{" "}
+                    使用快捷键{" "}
                     <pre className="inline rounded bg-gray-200 px-2 py-1">C</pre> 创建新问题。
                   </span>
                 </div>

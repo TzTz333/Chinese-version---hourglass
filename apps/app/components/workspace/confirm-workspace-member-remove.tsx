@@ -64,23 +64,22 @@ const ConfirmWorkspaceMemberRemove: React.FC<Props> = ({ isOpen, onClose, data, 
                     </div>
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                        Remove {data?.email}?
+                        移除 {data?.email}?
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Are you sure you want to remove member- {" "}
+                          你确定要移除成员 {" "}
                           <span className="font-bold">{data?.email}</span>
-                          ? They will no longer have access to this workspace. This action
-                          cannot be undone.
+                          ? 他们将无法再访问此工作区。
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="flex justify-end gap-2 bg-gray-50 p-4 sm:px-6">
-                  <SecondaryButton onClick={handleClose}>Cancel</SecondaryButton>
+                  <SecondaryButton onClick={handleClose}>取消</SecondaryButton>
                   <DangerButton onClick={handleDeletion} loading={isDeleteLoading}>
-                    {isDeleteLoading ? "Removing..." : "Remove"}
+                    {isDeleteLoading ? "移除中..." : "移除"}
                   </DangerButton>
                 </div>
               </Dialog.Panel>

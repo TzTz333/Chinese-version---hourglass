@@ -72,9 +72,8 @@ export const CyclesList: React.FC<TCycleStatsViewProps> = ({
         ) : (
           <EmptyState
             type="cycle"
-            title="Create New Cycle"
-            description="Sprint more effectively with Cycles by confining your project
-          to a fixed amount of time. Create new cycle now."
+            title="创建一个新的Cycle"
+            description="通过将项目限制在固定的时间内，使用 Cycles 来更有效地进行冲刺。"
             imgURL={emptyCycle}
           />
         )

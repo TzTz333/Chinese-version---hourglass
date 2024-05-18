@@ -89,8 +89,8 @@ const MembersSettings: NextPage<UserAuth> = (props) => {
           selectedRemoveMember
             ? members.find((item) => item.id === selectedRemoveMember)
             : selectedInviteRemoveMember
-            ? members.find((item) => item.id === selectedInviteRemoveMember)
-            : null
+              ? members.find((item) => item.id === selectedInviteRemoveMember)
+              : null
         }
         handleDelete={async () => {
           if (!workspaceSlug) return;
@@ -144,14 +144,14 @@ const MembersSettings: NextPage<UserAuth> = (props) => {
       >
         <section className="space-y-8">
           <div className="flex items-end justify-between gap-4">
-            <h3 className="text-2xl font-semibold">Members</h3>
+            <h3 className="text-2xl font-semibold">工作区内成员</h3>
             <button
               type="button"
               className="flex items-center gap-2 text-theme outline-none"
               onClick={() => setInviteModal(true)}
             >
               <PlusIcon className="h-4 w-4" />
-              Add Member
+              添加成员
             </button>
           </div>
           {!workspaceMembers || !workspaceInvitations ? (
@@ -165,91 +165,91 @@ const MembersSettings: NextPage<UserAuth> = (props) => {
             <div className="divide-y rounded-[10px] border border-gray-200 bg-white px-6">
               {members.length > 0
                 ? members.map((member) => (
-                    <div key={member.id} className="flex items-center justify-between py-6">
-                      <div className="flex items-center gap-x-8 gap-y-2">
-                        <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-gray-700 p-4 capitalize text-white">
-                          {member.avatar && member.avatar !== "" ? (
-                            <Image
-                              src={member.avatar}
-                              alt={member.first_name}
-                              layout="fill"
-                              objectFit="cover"
-                              className="rounded-lg"
-                            />
-                          ) : member.first_name !== "" ? (
-                            member.first_name.charAt(0)
-                          ) : (
-                            member.email.charAt(0)
-                          )}
-                        </div>
-                        <div>
-                          <h4 className="text-sm">
-                            {member.first_name} {member.last_name}
-                          </h4>
-                          <p className="text-xs text-gray-500">{member.email}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center">
-                        {!member?.status && (
-                          <div className="flex mr-2 px-2 py-1 bg-yellow-200 text-center rounded-full text-xs items-center justify-center">
-                            <p>Pending</p>
-                          </div>
+                  <div key={member.id} className="flex items-center justify-between py-6">
+                    <div className="flex items-center gap-x-8 gap-y-2">
+                      <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-gray-700 p-4 capitalize text-white">
+                        {member.avatar && member.avatar !== "" ? (
+                          <Image
+                            src={member.avatar}
+                            alt={member.first_name}
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded-lg"
+                          />
+                        ) : member.first_name !== "" ? (
+                          member.first_name.charAt(0)
+                        ) : (
+                          member.email.charAt(0)
                         )}
-                        <div className="flex items-center gap-2 text-xs">
-                          <CustomSelect
-                            label={ROLE[member.role as keyof typeof ROLE]}
-                            value={member.role}
-                            onChange={(value: any) => {
-                              workspaceService
-                                .updateWorkspaceMember(activeWorkspace?.slug as string, member.id, {
-                                  role: value,
-                                })
-                                .then(() => {
-                                  mutateMembers(
-                                    (prevData) =>
-                                      prevData?.map((m) =>
-                                        m.id === member.id ? { ...m, role: value } : m
-                                      ),
-                                    false
-                                  );
-                                  setToastAlert({
-                                    title: "Success",
-                                    type: "success",
-                                    message: "Member role updated successfully.",
-                                  });
-                                })
-                                .catch(() => {
-                                  setToastAlert({
-                                    title: "Error",
-                                    type: "error",
-                                    message: "An error occurred while updating member role.",
-                                  });
-                                });
-                            }}
-                          >
-                            {Object.keys(ROLE).map((key) => (
-                              <CustomSelect.Option key={key} value={key}>
-                                <>{ROLE[parseInt(key) as keyof typeof ROLE]}</>
-                              </CustomSelect.Option>
-                            ))}
-                          </CustomSelect>
-                          <CustomMenu ellipsis>
-                            <CustomMenu.MenuItem
-                              onClick={() => {
-                                if (member.member) {
-                                  setSelectedRemoveMember(member.id);
-                                } else {
-                                  setSelectedInviteRemoveMember(member.id);
-                                }
-                              }}
-                            >
-                              Remove member
-                            </CustomMenu.MenuItem>
-                          </CustomMenu>
-                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-sm">
+                          {member.first_name} {member.last_name}
+                        </h4>
+                        <p className="text-xs text-gray-500">{member.email}</p>
                       </div>
                     </div>
-                  ))
+                    <div className="flex items-center">
+                      {!member?.status && (
+                        <div className="flex mr-2 px-2 py-1 bg-yellow-200 text-center rounded-full text-xs items-center justify-center">
+                          <p>Pending</p>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2 text-xs">
+                        <CustomSelect
+                          label={ROLE[member.role as keyof typeof ROLE]}
+                          value={member.role}
+                          onChange={(value: any) => {
+                            workspaceService
+                              .updateWorkspaceMember(activeWorkspace?.slug as string, member.id, {
+                                role: value,
+                              })
+                              .then(() => {
+                                mutateMembers(
+                                  (prevData) =>
+                                    prevData?.map((m) =>
+                                      m.id === member.id ? { ...m, role: value } : m
+                                    ),
+                                  false
+                                );
+                                setToastAlert({
+                                  title: "Success",
+                                  type: "success",
+                                  message: "Member role updated successfully.",
+                                });
+                              })
+                              .catch(() => {
+                                setToastAlert({
+                                  title: "Error",
+                                  type: "error",
+                                  message: "An error occurred while updating member role.",
+                                });
+                              });
+                          }}
+                        >
+                          {Object.keys(ROLE).map((key) => (
+                            <CustomSelect.Option key={key} value={key}>
+                              <>{ROLE[parseInt(key) as keyof typeof ROLE]}</>
+                            </CustomSelect.Option>
+                          ))}
+                        </CustomSelect>
+                        <CustomMenu ellipsis>
+                          <CustomMenu.MenuItem
+                            onClick={() => {
+                              if (member.member) {
+                                setSelectedRemoveMember(member.id);
+                              } else {
+                                setSelectedInviteRemoveMember(member.id);
+                              }
+                            }}
+                          >
+                            删除成员
+                          </CustomMenu.MenuItem>
+                        </CustomMenu>
+                      </div>
+                    </div>
+                  </div>
+                ))
                 : null}
             </div>
           )}

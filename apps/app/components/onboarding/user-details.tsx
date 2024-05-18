@@ -109,7 +109,7 @@ export const UserDetails: React.FC<Props> = ({ user, setStep, setUserRole }) => 
                       onChange(value);
                       setUserRole(value ?? null);
                     }}
-                    label={value ? value.toString() : "选择你的角色"}
+                    label={value ? USER_ROLES.findLast(item => item.value === value)?.label : "选择你的角色"}
                     input
                     width="w-full"
                   >

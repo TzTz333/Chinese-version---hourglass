@@ -1,6 +1,6 @@
 import React from "react";
 
-import { XAxis, YAxis, Tooltip, AreaChart, Area, ReferenceLine, TooltipProps} from "recharts";
+import { XAxis, YAxis, Tooltip, AreaChart, Area, ReferenceLine, TooltipProps } from "recharts";
 
 //types
 import { IIssue } from "types";

@@ -76,25 +76,23 @@ export const Workspace: React.FC<Props> = ({ setStep, setWorkspace }) => {
         >
           <Tab
             className={({ selected }) =>
-              `rounded-3xl border px-4 py-2 outline-none ${
-                selected
-                  ? "border-theme bg-theme text-white"
-                  : "border-gray-300 bg-white hover:bg-hover-gray"
+              `rounded-3xl border px-4 py-2 outline-none ${selected
+                ? "border-theme bg-theme text-white"
+                : "border-gray-300 bg-white hover:bg-hover-gray"
               }`
             }
           >
-            New Workspace
+            创建新的工作区
           </Tab>
           <Tab
             className={({ selected }) =>
-              `rounded-3xl border px-5 py-2 outline-none ${
-                selected
-                  ? "border-theme bg-theme text-white"
-                  : "border-gray-300 bg-white hover:bg-hover-gray"
+              `rounded-3xl border px-5 py-2 outline-none ${selected
+                ? "border-theme bg-theme text-white"
+                : "border-gray-300 bg-white hover:bg-hover-gray"
               }`
             }
           >
-            Invited Workspace
+            受邀工作区
           </Tab>
         </Tab.List>
         <Tab.Panels>
@@ -140,7 +138,7 @@ export const Workspace: React.FC<Props> = ({ setStep, setWorkspace }) => {
                             {invitation.workspace.name}
                           </div>
                           <p className="text-sm text-gray-500">
-                            Invited by {invitation.workspace.owner.first_name}
+                            邀请人 {invitation.workspace.owner.first_name}
                           </p>
                         </div>
                         <div className="flex-shrink-0 self-center">
@@ -165,7 +163,7 @@ export const Workspace: React.FC<Props> = ({ setStep, setWorkspace }) => {
                   ))
                 ) : (
                   <div className="text-center">
-                    <h3 className="text-gray-400">You have no invitations</h3>
+                    <h3 className="text-gray-400">你当前没有被邀请</h3>
                   </div>
                 )}
               </div>
@@ -177,7 +175,7 @@ export const Workspace: React.FC<Props> = ({ setStep, setWorkspace }) => {
                   onClick={submitInvitations}
                   disabled={isJoiningWorkspaces || invitationsRespond.length === 0}
                 >
-                  Join Workspace
+                  加入工作区
                 </PrimaryButton>
               </div>
             </div>
